@@ -4,12 +4,28 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.6"
 }
 
+repositories {
+	mavenCentral()
+}
+
 dependencies {
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("org.springframework:spring-context")
+
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.assertj:assertj-core")
+    testImplementation("org.mockito:mockito-junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 dependencyManagement {
 	imports {
         mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
 	}
+}
+
+tasks.withType<Test> {
+	useJUnitPlatform()
 }
