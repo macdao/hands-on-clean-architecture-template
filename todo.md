@@ -1,3 +1,5 @@
 - [x] subprojects
 - [x] add codes in domain
+- [x] add codes in application
+- [ ] EditorConfig
 - [ ] Convention Plugins

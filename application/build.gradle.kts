@@ -4,8 +4,17 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.6"
 }
 
+repositories {
+	mavenCentral()
+}
+
 dependencies {
     api(project(":domain"))
+	implementation("org.springframework:spring-context")
+	implementation("org.springframework:spring-tx")
+	compileOnly("org.projectlombok:lombok")
+	annotationProcessor("org.projectlombok:lombok")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
