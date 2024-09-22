@@ -21,9 +21,11 @@
 
 参考[Spring Boot/Gralde Plugin](https://docs.spring.io/spring-boot/gradle-plugin/managing-dependencies.html)。
 
-- Manually declaring dependencies
+- 手动声明测试框架实现依赖
 
 增加`junit-platform-launcher`依赖声明，参考[Relying on automatic test framework implementation dependencies](https://docs.gradle.org/8.10/userguide/upgrading_version_8.html#test_framework_implementation_dependencies)。
+
+- 使用[convention plugins](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html)管理重复的构建脚本。
 
 ## subprojects说明
 
