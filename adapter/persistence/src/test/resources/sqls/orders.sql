@@ -1,0 +1,1 @@
+insert into orders (id, status, price) values ('order-id-1', 'CREATED', 100.00);
