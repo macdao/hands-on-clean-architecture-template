@@ -8,4 +8,5 @@ repositories {
 
 dependencies {
     implementation(libs.dependencyManagementPlugin)
+    implementation(libs.spotlessPlugin)
 }

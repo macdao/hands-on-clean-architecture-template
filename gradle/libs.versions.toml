@@ -3,11 +3,13 @@ dependency-management-plugin = "1.1.6"
 spring-boot = "3.3.4"
 spring-cloud = "2023.0.3"
 spring-cloud-contract = "4.1.4"
+spotless="7.0.0.BETA2"
 
 [libraries]
 dependencyManagementPlugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "dependency-management-plugin" }
 springBootDependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 springCloudDependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+spotlessPlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]
 

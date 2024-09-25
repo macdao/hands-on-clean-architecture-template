@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     id("io.spring.dependency-management")
+    id("com.diffplug.spotless")
 }
 
 repositories {
@@ -28,6 +29,20 @@ dependencyManagement {
     imports {
         mavenBom(versionCatalog.findLibrary("springBootDependencies").get().get().toString())
         mavenBom(versionCatalog.findLibrary("springCloudDependencies").get().get().toString())
+    }
+}
+
+spotless {
+    java {
+        target("src/*/java/**/*.java")
+        palantirJavaFormat()
+    }
+    kotlinGradle {
+        ktlint()
+    }
+    groovy {
+        target("src/contractTest/resources/contracts/**/*.groovy")
+        greclipse()
     }
 }
 
