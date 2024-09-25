@@ -3,5 +3,12 @@
 - [x] add codes in application
 - [x] Convention Plugins
 - [x] add codes in adapter/persistence
+- [x] add codes in adapter/web
+- [ ] add codes in configuration
+- [ ] add web security
+- [ ] add validation
+- [ ] add codes in adapter/client
+- [ ] add codes in adapter/persistence-mpp
+- [ ] gradle withType
 - [ ] formatter
 - [ ] jacoco
