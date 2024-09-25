@@ -5,6 +5,7 @@
 - [x] add codes in adapter/persistence
 - [x] add codes in adapter/web
 - [x] add codes in configuration
+- [x] unify all versions
 - [ ] add web security
 - [ ] add validation
 - [ ] add codes in adapter/client
@@ -12,3 +13,4 @@
 - [ ] gradle withType
 - [ ] formatter
 - [ ] jacoco
+- [ ] json in persistence

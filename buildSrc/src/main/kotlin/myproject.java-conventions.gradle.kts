@@ -22,9 +22,12 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+val versionCatalog = versionCatalogs.named("libs")
+
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.boot:spring-boot-dependencies:3.3.4")
+        mavenBom(versionCatalog.findLibrary("springBootDependencies").get().get().toString())
+        mavenBom(versionCatalog.findLibrary("springCloudDependencies").get().get().toString())
     }
 }
 
