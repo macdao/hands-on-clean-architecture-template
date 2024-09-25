@@ -37,3 +37,10 @@
 - adapter:client：客户端适配器
 - configuration：配置层
 
+## 自动化测试的数据库
+
+使用[Docker Compose Support](https://docs.spring.io/spring-boot/reference/features/dev-services.html)，在测试时自动启动MySQL容器。需要安装Docker和Docker Compose。
+
+adapter:persistence和configuration的自动化测试都使用adapter/persistence目录下的compose.yaml文件。
+
+对于`gradle bootRun`，使用configuration的compose.yaml文件。

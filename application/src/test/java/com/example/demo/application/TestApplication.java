@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @SpringBootApplication
-public class TestApplication {
+class TestApplication {
     @Bean
     PlatformTransactionManager platformTransactionManager() {
         return mock(PlatformTransactionManager.class);
