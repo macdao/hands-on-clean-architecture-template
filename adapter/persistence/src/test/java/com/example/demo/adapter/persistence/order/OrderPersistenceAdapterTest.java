@@ -2,17 +2,15 @@ package com.example.demo.adapter.persistence.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.example.demo.domain.order.Order;
+import com.example.demo.domain.order.OrderId;
+import com.example.demo.domain.order.OrderStatus;
 import java.math.BigDecimal;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.example.demo.domain.order.Order;
-import com.example.demo.domain.order.OrderId;
-import com.example.demo.domain.order.OrderStatus;
 
 @SpringBootTest
 @Transactional
@@ -31,7 +29,8 @@ class OrderPersistenceAdapterTest {
 
         orderPersistenceAdapter.save(order);
 
-        OrderEntity savedEntity = orderEntityRepository.findById(orderId.value()).orElseThrow();
+        OrderEntity savedEntity =
+                orderEntityRepository.findById(orderId.value()).orElseThrow();
         assertThat(savedEntity.getId()).isEqualTo(orderId.value());
         assertThat(savedEntity.getStatus()).isEqualTo(OrderStatus.CREATED);
         assertThat(savedEntity.getPrice()).isEqualByComparingTo(new BigDecimal("100.00"));

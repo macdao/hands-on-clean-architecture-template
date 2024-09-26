@@ -7,8 +7,12 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.example.demo.application.port.in.OrderNotFoundException;
+import com.example.demo.application.port.out.FindOrderPort;
+import com.example.demo.application.port.out.SaveOrderPort;
+import com.example.demo.domain.order.Order;
+import com.example.demo.domain.order.OrderId;
 import java.util.Optional;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +21,17 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.SimpleTransactionStatus;
 
-import com.example.demo.application.port.in.OrderNotFoundException;
-import com.example.demo.application.port.out.FindOrderPort;
-import com.example.demo.application.port.out.SaveOrderPort;
-import com.example.demo.domain.order.Order;
-import com.example.demo.domain.order.OrderId;
-
 @SpringBootTest
 public class PayOrderServiceIntegrationTest {
     @Autowired
     PlatformTransactionManager transactionManager;
+
     @MockBean
     FindOrderPort findOrderPort;
+
     @MockBean
     SaveOrderPort saveOrderPort;
+
     @Autowired
     PayOrderService payOrderService;
 
@@ -59,8 +60,7 @@ public class PayOrderServiceIntegrationTest {
         when(findOrderPort.findById(new OrderId(orderId))).thenReturn(Optional.empty());
         when(transactionManager.getTransaction(any())).thenReturn(new SimpleTransactionStatus());
 
-        assertThatThrownBy(() -> payOrderService.payOrder(orderId))
-            .isInstanceOf(OrderNotFoundException.class);
+        assertThatThrownBy(() -> payOrderService.payOrder(orderId)).isInstanceOf(OrderNotFoundException.class);
         verify(transactionManager).rollback(any());
     }
 }

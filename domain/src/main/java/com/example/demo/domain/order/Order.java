@@ -1,9 +1,8 @@
 package com.example.demo.domain.order;
 
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.math.BigDecimal;
 
 @Getter
 @AllArgsConstructor

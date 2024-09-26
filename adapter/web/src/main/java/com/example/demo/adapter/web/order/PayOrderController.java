@@ -1,12 +1,10 @@
 package com.example.demo.adapter.web.order;
 
+import com.example.demo.application.port.in.PayOrderUseCase;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.application.port.in.PayOrderUseCase;
-
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,5 +15,4 @@ public class PayOrderController {
     public void payOrder(@PathVariable String orderId) {
         payOrderUseCase.payOrder(orderId);
     }
-
 }

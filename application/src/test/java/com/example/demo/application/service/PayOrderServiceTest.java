@@ -7,19 +7,17 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.example.demo.application.port.in.OrderNotFoundException;
 import com.example.demo.application.port.out.FindOrderPort;
 import com.example.demo.application.port.out.SaveOrderPort;
 import com.example.demo.domain.order.Order;
 import com.example.demo.domain.order.OrderId;
+import java.util.Optional;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class PayOrderServiceTest {
@@ -50,8 +48,7 @@ class PayOrderServiceTest {
         String orderId = "order-id-1";
         when(findOrderPort.findById(new OrderId(orderId))).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> payOrderService.payOrder(orderId))
-            .isInstanceOf(OrderNotFoundException.class);
+        assertThatThrownBy(() -> payOrderService.payOrder(orderId)).isInstanceOf(OrderNotFoundException.class);
         verify(saveOrderPort, never()).save(any());
     }
 }

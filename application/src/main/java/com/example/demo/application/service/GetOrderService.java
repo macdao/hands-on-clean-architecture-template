@@ -1,14 +1,12 @@
 package com.example.demo.application.service;
 
-import org.springframework.stereotype.Service;
-
 import com.example.demo.application.port.in.GetOrderQuery;
 import com.example.demo.application.port.in.OrderNotFoundException;
 import com.example.demo.application.port.out.FindOrderPort;
 import com.example.demo.domain.order.Order;
 import com.example.demo.domain.order.OrderId;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +15,8 @@ public class GetOrderService implements GetOrderQuery {
 
     @Override
     public Order findById(String orderId) throws OrderNotFoundException {
-        return findOrderPort.findById(new OrderId(orderId))
-            .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + orderId));
+        return findOrderPort
+                .findById(new OrderId(orderId))
+                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + orderId));
     }
 }

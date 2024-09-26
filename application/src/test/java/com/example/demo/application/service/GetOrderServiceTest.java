@@ -5,18 +5,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.example.demo.application.port.in.OrderNotFoundException;
+import com.example.demo.application.port.out.FindOrderPort;
+import com.example.demo.domain.order.Order;
+import com.example.demo.domain.order.OrderId;
 import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import com.example.demo.application.port.in.OrderNotFoundException;
-import com.example.demo.application.port.out.FindOrderPort;
-import com.example.demo.domain.order.Order;
-import com.example.demo.domain.order.OrderId;
 
 @ExtendWith(MockitoExtension.class)
 class GetOrderServiceTest {
@@ -44,7 +42,7 @@ class GetOrderServiceTest {
         when(findOrderPort.findById(new OrderId(orderId))).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> getOrderService.findById(orderId))
-            .isInstanceOf(OrderNotFoundException.class)
-            .hasMessageContaining("Order not found with id: " + orderId);
+                .isInstanceOf(OrderNotFoundException.class)
+                .hasMessageContaining("Order not found with id: " + orderId);
     }
 }
