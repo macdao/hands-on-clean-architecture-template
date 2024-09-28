@@ -1,6 +1,7 @@
 package com.example.demo.adapter.web;
 
 import com.example.demo.application.port.in.PayOrderUseCase;
+import com.example.demo.application.port.in.PlaceOrderUseCase;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ abstract class ContractTestBase {
 
     @MockBean
     PayOrderUseCase payOrderUseCase;
+
+    @MockBean
+    PlaceOrderUseCase placeOrderUseCase;
 
     @BeforeEach
     public void setup() {

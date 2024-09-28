@@ -7,10 +7,14 @@
 - [x] add codes in configuration
 - [x] unify all versions
 - [x] formatter
-- [ ] add web security
+- [x] add web security
 - [ ] add validation
 - [ ] add codes in adapter/client
 - [ ] add codes in adapter/persistence-mpp
 - [ ] gradle withType
 - [ ] jacoco
 - [ ] json in persistence
+- [ ] git info
+- [ ] build image
+- [ ] re-consider unify all versions
+- [ ] update gradle name and project name
