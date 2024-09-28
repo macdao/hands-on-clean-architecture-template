@@ -1,6 +1,6 @@
 package com.example.demo.application.service;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.verify;
 
 import com.example.demo.application.port.in.PlaceOrderUseCase.PlaceOrderCommand;
@@ -33,13 +33,15 @@ class PlaceOrderServiceTest {
 
     @Test
     void place_order_should_create_and_save_order() {
-        PlaceOrderCommand command = new PlaceOrderCommand(new BigDecimal("100.0"));
+        PlaceOrderCommand command = new PlaceOrderCommand("user-id", new BigDecimal("100.0"));
 
         placeOrderService.placeOrder(command);
 
         verify(transactionTemplate).execute(transactionCallbackCaptor.capture());
 
         transactionCallbackCaptor.getValue().doInTransaction(null);
-        verify(saveOrderPort).save(any());
+        verify(saveOrderPort)
+                .save(argThat(order -> order.getBuyerId().value().equals("user-id")
+                        && order.getPrice().compareTo(new BigDecimal("100.0")) == 0));
     }
 }

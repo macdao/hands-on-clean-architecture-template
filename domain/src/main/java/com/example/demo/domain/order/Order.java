@@ -1,5 +1,6 @@
 package com.example.demo.domain.order;
 
+import com.example.demo.domain.user.UserId;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,11 +9,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Order {
     private final OrderId id;
+    private final UserId buyerId;
     private OrderStatus status;
     private BigDecimal price;
 
-    public Order(BigDecimal price) {
-        this(new OrderId(), OrderStatus.CREATED, price);
+    public Order(UserId buyerId, BigDecimal price) {
+        this(new OrderId(), buyerId, OrderStatus.CREATED, price);
     }
 
     public void pay() {
