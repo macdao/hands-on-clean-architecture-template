@@ -1,3 +1,6 @@
-rootProject.name = "demo"
+rootProject.name = "hocat"
 
-include("domain", "application", "adapter:web", "adapter:persistence", "adapter:client", "configuration")
+include("domain", "application", "configuration")
+include("adapter:web")
+include("adapter:persistence")
+include("adapter:client")

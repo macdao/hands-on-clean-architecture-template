@@ -8,6 +8,8 @@
 - [x] unify all versions
 - [x] formatter
 - [x] add web security
+- [x] update gradle name and project name
+- [ ] add Authorization
 - [ ] add validation
 - [ ] add codes in adapter/client
 - [ ] add codes in adapter/persistence-mpp
@@ -17,4 +19,3 @@
 - [ ] git info
 - [ ] build image
 - [ ] re-consider unify all versions
-- [ ] update gradle name and project name

@@ -8,7 +8,7 @@ repositories {
     mavenCentral()
 }
 
-group = "com.example"
+group = "com.example.demo"
 version = "0.0.1-SNAPSHOT"
 
 java {
