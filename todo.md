@@ -10,7 +10,7 @@
 - [x] add web security
 - [x] update gradle name and project name
 - [x] build image
-- [ ] add validation
+- [x] add validation
 - [ ] add codes in adapter/client
 - [ ] add codes in adapter/persistence-mpp
 - [ ] gradle withType

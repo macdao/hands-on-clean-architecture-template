@@ -2,6 +2,8 @@ package com.example.demo.adapter.web.order;
 
 import com.example.demo.application.port.in.PlaceOrderUseCase;
 import com.example.demo.application.port.in.PlaceOrderUseCase.PlaceOrderCommand;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Digits;
 import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,10 +21,10 @@ public class PlaceOrderController {
 
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
-    public void placeOrder(@RequestBody PlaceOrderRequest request, @AuthenticationPrincipal User user) {
+    public void placeOrder(@RequestBody @Valid PlaceOrderRequest request, @AuthenticationPrincipal User user) {
         PlaceOrderCommand command = new PlaceOrderCommand(user.getUsername(), request.price());
         placeOrderUseCase.placeOrder(command);
     }
 
-    public record PlaceOrderRequest(BigDecimal price) {}
+    public record PlaceOrderRequest(@Digits(integer = 6, fraction = 2) BigDecimal price) {}
 }
