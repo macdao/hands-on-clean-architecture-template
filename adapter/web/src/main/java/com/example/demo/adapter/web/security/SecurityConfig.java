@@ -29,7 +29,8 @@ public class SecurityConfig {
                 .build();
     }
 
-    private PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider() {
+    @Bean
+    public PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider() {
         PreAuthenticatedAuthenticationProvider provider = new PreAuthenticatedAuthenticationProvider();
         provider.setPreAuthenticatedUserDetailsService(token ->
                 User.withUsername((String) token.getPrincipal()).password("N/A").build());
