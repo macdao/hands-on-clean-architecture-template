@@ -9,13 +9,13 @@
 - [x] formatter
 - [x] add web security
 - [x] update gradle name and project name
-- [ ] add Authorization
+- [x] build image
 - [ ] add validation
 - [ ] add codes in adapter/client
 - [ ] add codes in adapter/persistence-mpp
 - [ ] gradle withType
 - [ ] jacoco
+- [ ] check tools
 - [ ] json in persistence
 - [ ] git info
-- [ ] build image
 - [ ] re-consider unify all versions
