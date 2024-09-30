@@ -1,15 +1,8 @@
 package com.example.demo.application;
 
-import static org.mockito.Mockito.mock;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication
-class TestApplication {
-    @Bean
-    PlatformTransactionManager platformTransactionManager() {
-        return mock(PlatformTransactionManager.class);
-    }
-}
+@SpringBootApplication(proxyBeanMethods = false)
+@EnableTransactionManagement(proxyTargetClass = true)
+class TestApplication {}

@@ -3,42 +3,20 @@ package com.example.demo.application.service;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.example.demo.application.port.in.OrderNotFoundException;
-import com.example.demo.application.port.out.FindOrderPort;
-import com.example.demo.application.port.out.SaveOrderPort;
 import com.example.demo.domain.order.Order;
 import com.example.demo.domain.order.OrderId;
 import java.util.Optional;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.SimpleTransactionStatus;
 
-@SpringBootTest
-public class PayOrderServiceIntegrationTest {
-    @Autowired
-    PlatformTransactionManager transactionManager;
-
-    @MockBean
-    FindOrderPort findOrderPort;
-
-    @MockBean
-    SaveOrderPort saveOrderPort;
-
+class PayOrderServiceIntegrationTest extends IntegrationTestBase {
     @Autowired
     PayOrderService payOrderService;
-
-    @AfterEach
-    void tearDown() {
-        reset(transactionManager);
-    }
 
     @Test
     void pay_order_should_pay_and_save_order_when_order_exists() throws OrderNotFoundException {
