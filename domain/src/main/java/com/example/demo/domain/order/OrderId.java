@@ -1,9 +1,9 @@
 package com.example.demo.domain.order;
 
-import java.util.UUID;
+import com.example.demo.domain.Identities;
 
 public record OrderId(String value) {
     public OrderId() {
-        this(UUID.randomUUID().toString());
+        this(Identities.generateId());
     }
 }
