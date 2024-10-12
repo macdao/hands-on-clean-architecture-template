@@ -19,7 +19,7 @@
 
 - 使用[Dependency Management Plugin](https://docs.spring.io/dependency-management-plugin/docs/current/reference/html/)管理依赖。
 
-参考[Spring Boot/Gralde Plugin](https://docs.spring.io/spring-boot/gradle-plugin/managing-dependencies.html)。
+参考[Spring Boot/Gradle Plugin](https://docs.spring.io/spring-boot/gradle-plugin/managing-dependencies.html)。
 
 - 手动声明测试框架实现依赖
 

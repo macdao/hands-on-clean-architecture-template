@@ -18,5 +18,4 @@
 - [ ] jacoco
 - [ ] check tools
 - [ ] json in persistence
-- [ ] git info
 - [ ] re-consider unify all versions
