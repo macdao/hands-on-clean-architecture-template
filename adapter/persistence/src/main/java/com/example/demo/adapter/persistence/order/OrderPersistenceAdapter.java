@@ -17,8 +17,13 @@ public class OrderPersistenceAdapter implements SaveOrderPort, FindOrderPort {
 
     @Override
     public void save(Order order) {
-        OrderEntity orderEntity =
-                new OrderEntity(order.getId().value(), order.getBuyerId().value(), order.getStatus(), order.getPrice());
+        OrderEntity orderEntity = new OrderEntity(
+                order.getId().value(),
+                order.getBuyerId().value(),
+                order.getStatus(),
+                order.getPrice(),
+                order.getCreatedDate(),
+                order.getLastModifiedDate());
         orderEntityRepository.save(orderEntity);
     }
 
@@ -30,6 +35,8 @@ public class OrderPersistenceAdapter implements SaveOrderPort, FindOrderPort {
                         new OrderId(orderEntity.getId()),
                         new UserId(orderEntity.getBuyerId()),
                         orderEntity.getStatus(),
-                        orderEntity.getPrice()));
+                        orderEntity.getPrice(),
+                        orderEntity.getCreatedDate(),
+                        orderEntity.getLastModifiedDate()));
     }
 }

@@ -1,1 +1,14 @@
-INSERT INTO orders (id, buyer_id, status, price) VALUES ('order-id-1', 'buyer-id-1', 'CREATED', 100.00);
+INSERT
+    INTO
+        orders(
+            id,
+            buyer_id,
+            status,
+            price
+        )
+    VALUES(
+        'order-id-1',
+        'buyer-id-1',
+        'CREATED',
+        100.00
+    );

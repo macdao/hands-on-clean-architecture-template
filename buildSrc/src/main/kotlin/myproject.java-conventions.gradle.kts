@@ -44,6 +44,10 @@ spotless {
         target("src/contractTest/resources/contracts/**/*.groovy")
         greclipse()
     }
+    sql {
+        target("src/*/resources/**/*.sql")
+        dbeaver()
+    }
 }
 
 tasks.withType<Test> {

@@ -25,9 +25,9 @@ class OrderPersistenceAdapterTest {
 
     @Test
     void save_should_save_order_entity() {
-        OrderId orderId = new OrderId("test-order-id");
         UserId buyerId = new UserId("test-buyer-id");
-        Order order = new Order(orderId, buyerId, OrderStatus.CREATED, new BigDecimal("100.00"));
+        Order order = new Order(buyerId, new BigDecimal("100.00"));
+        OrderId orderId = order.getId();
 
         orderPersistenceAdapter.save(order);
 

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import com.example.demo.domain.user.UserId;
 import java.math.BigDecimal;
+import java.time.Instant;
 import org.junit.jupiter.api.Test;
 
 class OrderTest {
@@ -26,13 +27,24 @@ class OrderTest {
     @Test
     void pay_should_throw_exception_when_order_not_in_created_state() {
         UserId buyerId = new UserId("buyer-1");
-        Order paidOrder = new Order(new OrderId("order-id-1"), buyerId, OrderStatus.PAID, new BigDecimal("100.00"));
+        Order paidOrder = new Order(
+                new OrderId("order-id-1"),
+                buyerId,
+                OrderStatus.PAID,
+                new BigDecimal("100.00"),
+                Instant.now(),
+                Instant.now());
         assertThatThrownBy(paidOrder::pay)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Order must be in CREATED state to be paid");
 
-        Order cancelledOrder =
-                new Order(new OrderId("order-id-2"), buyerId, OrderStatus.CANCELLED, new BigDecimal("100.00"));
+        Order cancelledOrder = new Order(
+                new OrderId("order-id-2"),
+                buyerId,
+                OrderStatus.CANCELLED,
+                new BigDecimal("100.00"),
+                Instant.now(),
+                Instant.now());
         assertThatThrownBy(cancelledOrder::pay)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Order must be in CREATED state to be paid");

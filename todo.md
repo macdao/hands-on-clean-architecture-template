@@ -11,6 +11,7 @@
 - [x] update gradle name and project name
 - [x] build image
 - [x] add validation
+- [x] add create & update date in entity
 - [ ] add codes in adapter/client
 - [ ] add codes in adapter/persistence-mpp
 - [ ] gradle withType
