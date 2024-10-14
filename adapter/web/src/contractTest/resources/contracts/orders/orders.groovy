@@ -5,7 +5,7 @@ import static org.springframework.cloud.contract.spec.Contract.make
 		name "place a new order"
 		request {
 			method POST()
-			url "/orders"
+			url "/api/orders"
 			headers {
 				header authorization(), 'user-token'
 				contentType('application/json')
@@ -22,7 +22,7 @@ import static org.springframework.cloud.contract.spec.Contract.make
 		name "place an invalid order"
 		request {
 			method POST()
-			url "/orders"
+			url "/api/orders"
 			headers {
 				header authorization(), 'user-token'
 				contentType('application/json')
@@ -48,7 +48,7 @@ import static org.springframework.cloud.contract.spec.Contract.make
 		name "place an order with invalid price digits"
 		request {
 			method POST()
-			url "/orders"
+			url "/api/orders"
 			headers {
 				header authorization(), 'user-token'
 				contentType('application/json')

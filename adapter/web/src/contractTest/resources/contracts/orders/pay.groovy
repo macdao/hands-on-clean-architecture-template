@@ -5,7 +5,7 @@ import static org.springframework.cloud.contract.spec.Contract.make
 		name "pay an order"
 		request {
 			method POST()
-			url "/orders/order-id-1/pay"
+			url "/api/orders/order-id-1/pay"
 			headers {
 				header authorization(), 'user-token'
 			}
@@ -18,7 +18,7 @@ import static org.springframework.cloud.contract.spec.Contract.make
 		name "pay an order but conflict"
 		request {
 			method POST()
-			url "/orders/order-id-2/pay"
+			url "/api/orders/order-id-2/pay"
 			headers {
 				header authorization(), 'user-token'
 			}
@@ -31,7 +31,7 @@ import static org.springframework.cloud.contract.spec.Contract.make
 		name "pay an order without authorization"
 		request {
 			method POST()
-			url "/orders/order-id-2/pay"
+			url "/api/orders/order-id-2/pay"
 		}
 		response {
 			status FORBIDDEN()
@@ -41,7 +41,7 @@ import static org.springframework.cloud.contract.spec.Contract.make
 		name "pay an order but encounter internal server error"
 		request {
 			method POST()
-			url "/orders/order-id-3/pay"
+			url "/api/orders/order-id-3/pay"
 			headers {
 				header authorization(), 'user-token'
 			}
