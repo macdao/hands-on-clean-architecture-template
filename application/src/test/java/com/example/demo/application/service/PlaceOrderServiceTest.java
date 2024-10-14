@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
 import com.example.demo.application.port.in.PlaceOrderUseCase.PlaceOrderCommand;
+import com.example.demo.application.port.out.DeductInventoryPort;
 import com.example.demo.application.port.out.SaveOrderPort;
 import com.example.demo.domain.order.Order;
 import java.math.BigDecimal;
@@ -22,6 +23,9 @@ class PlaceOrderServiceTest {
 
     @Mock
     SaveOrderPort saveOrderPort;
+
+    @Mock
+    DeductInventoryPort deductInventoryPort;
 
     @Mock
     TransactionTemplate transactionTemplate;
@@ -50,5 +54,14 @@ class PlaceOrderServiceTest {
         assertThat(capturedOrder.getPrice()).isEqualByComparingTo(new BigDecimal("100.0"));
         assertThat(capturedOrder.getProductId().value()).isEqualTo("product-id-1");
         assertThat(capturedOrder.getQuantity()).isEqualTo(1);
+    }
+
+    @Test
+    void place_order_should_deduct_inventory_before_saving_order() {
+        PlaceOrderCommand command = new PlaceOrderCommand("user-id-1", "product-id-1", 2, new BigDecimal("200.0"));
+
+        placeOrderService.placeOrder(command);
+
+        verify(deductInventoryPort).deductInventory("product-id-1", 2);
     }
 }

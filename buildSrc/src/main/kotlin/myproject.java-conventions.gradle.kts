@@ -41,7 +41,7 @@ spotless {
         ktlint()
     }
     groovy {
-        target("src/contractTest/resources/contracts/**/*.groovy")
+        target("src/*/resources/contracts/**/*.groovy")
         greclipse()
     }
     sql {

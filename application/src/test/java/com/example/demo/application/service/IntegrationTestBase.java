@@ -1,5 +1,6 @@
 package com.example.demo.application.service;
 
+import com.example.demo.application.port.out.DeductInventoryPort;
 import com.example.demo.application.port.out.FindOrderPort;
 import com.example.demo.application.port.out.SaveOrderPort;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,4 +21,7 @@ abstract class IntegrationTestBase {
 
     @MockBean
     TransactionTemplate transactionTemplate;
+
+    @MockBean
+    DeductInventoryPort deductInventoryPort;
 }

@@ -1,0 +1,3 @@
+example:
+  inventory:
+    base-url: http://inventory/api
