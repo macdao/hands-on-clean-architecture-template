@@ -1,10 +1,11 @@
 package com.example.demo.application.service;
 
-import static org.mockito.ArgumentMatchers.argThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
 import com.example.demo.application.port.in.PlaceOrderUseCase.PlaceOrderCommand;
 import com.example.demo.application.port.out.SaveOrderPort;
+import com.example.demo.domain.order.Order;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,17 +32,23 @@ class PlaceOrderServiceTest {
     @Captor
     ArgumentCaptor<TransactionCallback<Void>> transactionCallbackCaptor;
 
+    @Captor
+    ArgumentCaptor<Order> orderCaptor;
+
     @Test
     void place_order_should_create_and_save_order() {
-        PlaceOrderCommand command = new PlaceOrderCommand("user-id", new BigDecimal("100.0"));
+        PlaceOrderCommand command = new PlaceOrderCommand("user-id-1", "product-id-1", 1, new BigDecimal("100.0"));
 
         placeOrderService.placeOrder(command);
 
         verify(transactionTemplate).execute(transactionCallbackCaptor.capture());
 
         transactionCallbackCaptor.getValue().doInTransaction(null);
-        verify(saveOrderPort)
-                .save(argThat(order -> order.getBuyerId().value().equals("user-id")
-                        && order.getPrice().compareTo(new BigDecimal("100.0")) == 0));
+        verify(saveOrderPort).save(orderCaptor.capture());
+        Order capturedOrder = orderCaptor.getValue();
+        assertThat(capturedOrder.getBuyerId().value()).isEqualTo("user-id-1");
+        assertThat(capturedOrder.getPrice()).isEqualByComparingTo(new BigDecimal("100.0"));
+        assertThat(capturedOrder.getProductId().value()).isEqualTo("product-id-1");
+        assertThat(capturedOrder.getQuantity()).isEqualTo(1);
     }
 }

@@ -15,14 +15,14 @@ class PlaceOrderServiceIntegrationTest extends IntegrationTestBase {
 
     @Test
     void place_order_should_create_and_save_order() {
-        PlaceOrderCommand command = new PlaceOrderCommand("user-id", new BigDecimal("100.0"));
+        PlaceOrderCommand command = new PlaceOrderCommand("user-id-1", "product-id-1", 1, new BigDecimal("100.0"));
 
         placeOrderService.placeOrder(command);
     }
 
     @Test
     void place_order_should_throw_exception_when_price_is_null() {
-        PlaceOrderCommand command = new PlaceOrderCommand("user-id", null);
+        PlaceOrderCommand command = new PlaceOrderCommand("user-id-1", "product-id-1", 1, null);
 
         assertThatThrownBy(() -> placeOrderService.placeOrder(command))
                 .isInstanceOf(ConstraintViolationException.class);

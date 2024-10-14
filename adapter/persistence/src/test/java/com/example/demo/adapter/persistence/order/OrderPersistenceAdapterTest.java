@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.example.demo.domain.order.Order;
 import com.example.demo.domain.order.OrderId;
 import com.example.demo.domain.order.OrderStatus;
+import com.example.demo.domain.product.ProductId;
 import com.example.demo.domain.user.UserId;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,8 @@ class OrderPersistenceAdapterTest {
 
     @Test
     void save_should_save_order_entity() {
-        UserId buyerId = new UserId("test-buyer-id");
-        Order order = new Order(buyerId, new BigDecimal("100.00"));
+        UserId buyerId = new UserId("buyer-id-1");
+        Order order = new Order(buyerId, new ProductId("product-id-1"), 1, new BigDecimal("100.00"));
         OrderId orderId = order.getId();
 
         orderPersistenceAdapter.save(order);
@@ -35,6 +36,8 @@ class OrderPersistenceAdapterTest {
                 orderEntityRepository.findById(orderId.value()).orElseThrow();
         assertThat(savedEntity.getId()).isEqualTo(orderId.value());
         assertThat(savedEntity.getBuyerId()).isEqualTo(buyerId.value());
+        assertThat(savedEntity.getProductId()).isEqualTo("product-id-1");
+        assertThat(savedEntity.getQuantity()).isEqualTo(1);
         assertThat(savedEntity.getStatus()).isEqualTo(OrderStatus.CREATED);
         assertThat(savedEntity.getPrice()).isEqualByComparingTo(new BigDecimal("100.00"));
     }
@@ -49,6 +52,8 @@ class OrderPersistenceAdapterTest {
         assertThat(foundOrder).isNotNull();
         assertThat(foundOrder.getId()).isEqualTo(orderId);
         assertThat(foundOrder.getBuyerId()).isEqualTo(new UserId("buyer-id-1"));
+        assertThat(foundOrder.getProductId()).isEqualTo(new ProductId("product-id-1"));
+        assertThat(foundOrder.getQuantity()).isEqualTo(1);
         assertThat(foundOrder.getStatus()).isEqualTo(OrderStatus.CREATED);
         assertThat(foundOrder.getPrice()).isEqualByComparingTo(new BigDecimal("100.00"));
     }

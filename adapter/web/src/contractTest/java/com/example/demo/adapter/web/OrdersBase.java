@@ -39,6 +39,8 @@ public abstract class OrdersBase extends ContractTestBase {
             PlaceOrderUseCase.PlaceOrderCommand command = placeOrderCommandArgumentCaptor.getValue();
             assertThat(command.price()).isEqualTo(new BigDecimal("100.0"));
             assertThat(command.buyerId()).isEqualTo("user-token");
+            assertThat(command.productId()).isEqualTo("product-id-1");
+            assertThat(command.quantity()).isEqualTo(1);
         }
     }
 }

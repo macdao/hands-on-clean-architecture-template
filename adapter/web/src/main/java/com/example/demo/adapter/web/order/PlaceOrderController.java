@@ -4,6 +4,8 @@ import com.example.demo.application.port.in.PlaceOrderUseCase;
 import com.example.demo.application.port.in.PlaceOrderUseCase.PlaceOrderCommand;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,9 +22,13 @@ public class PlaceOrderController {
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
     public void placeOrder(@RequestBody @Valid PlaceOrderRequest request, @AuthenticationPrincipal User user) {
-        PlaceOrderCommand command = new PlaceOrderCommand(user.getUsername(), request.price());
+        PlaceOrderCommand command =
+                new PlaceOrderCommand(user.getUsername(), request.productId(), request.quantity(), request.price());
         placeOrderUseCase.placeOrder(command);
     }
 
-    public record PlaceOrderRequest(@Digits(integer = 6, fraction = 2) BigDecimal price) {}
+    public record PlaceOrderRequest(
+            @NotNull String productId,
+            @NotNull @Min(1) Integer quantity,
+            @Digits(integer = 6, fraction = 2) BigDecimal price) {}
 }

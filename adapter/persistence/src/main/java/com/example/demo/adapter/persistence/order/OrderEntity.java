@@ -24,6 +24,8 @@ public class OrderEntity {
     private String id;
 
     private String buyerId;
+    private String productId;
+    private int quantity;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;

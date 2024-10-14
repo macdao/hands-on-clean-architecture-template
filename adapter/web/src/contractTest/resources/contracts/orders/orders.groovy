@@ -11,6 +11,8 @@ import static org.springframework.cloud.contract.spec.Contract.make
 				contentType('application/json')
 			}
 			body(
+					productId: "product-id-1",
+					quantity: 1,
 					price: 100.0
 					)
 		}
@@ -28,6 +30,8 @@ import static org.springframework.cloud.contract.spec.Contract.make
 				contentType('application/json')
 			}
 			body(
+					productId: "product-id-1",
+					quantity: 1,
 					price: null
 					)
 		}

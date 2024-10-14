@@ -3,12 +3,16 @@ INSERT
         orders(
             id,
             buyer_id,
+            product_id,
+            quantity,
             status,
             price
         )
     VALUES(
         'order-id-1',
         'buyer-id-1',
+        'product-id-1',
+        1,
         'CREATED',
         100.00
     );
