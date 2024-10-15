@@ -19,3 +19,4 @@
 - [ ] check tools
 - [ ] json in persistence
 - [ ] re-consider unify all versions
+- [ ] stub runner for consumer
