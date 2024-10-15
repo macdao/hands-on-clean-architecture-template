@@ -1,5 +1,3 @@
-package contracts.client.inventory
-
 import static org.springframework.cloud.contract.spec.Contract.make
 
 [

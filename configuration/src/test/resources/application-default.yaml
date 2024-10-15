@@ -4,3 +4,6 @@ spring:
       skip:
         in-tests: false
       file: ../adapter/persistence/compose.yaml
+example:
+  inventory:
+    base-url: http://inventory/api
