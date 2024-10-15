@@ -68,9 +68,34 @@ import static org.springframework.cloud.contract.spec.Contract.make
 			}
 			body(
 					type: "about:blank",
-					title: "MethodArgumentNotValidException",
+					title: "Bad Request",
 					status: 400,
-					detail: anyNonBlankString()
+					detail: "Invalid request content.",
+					"instance":"/api/orders"
+					)
+		}
+	},
+	make {
+		name "place an order with empty body"
+		request {
+			method POST()
+			url "/api/orders"
+			headers {
+				header authorization(), 'user-token'
+				contentType('application/json')
+			}
+		}
+		response {
+			status BAD_REQUEST()
+			headers {
+				contentType('application/problem+json')
+			}
+			body(
+					type: "about:blank",
+					title: "Bad Request",
+					status: 400,
+					detail: "Failed to read request",
+					"instance":"/api/orders"
 					)
 		}
 	}
