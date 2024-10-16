@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Set the version of Spring Cloud Contract Stub Runner Boot
+VERSION="2.2.8.RELEASE"
+PORT=16580
+
+JAR_NAME="spring-cloud-contract-stub-runner-boot-${VERSION}.jar"
+DOWNLOAD_URL="https://search.maven.org/remotecontent?filepath=org/springframework/cloud/spring-cloud-contract-stub-runner-boot/${VERSION}/${JAR_NAME}"
+
+# Get the absolute path of the script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Change to the script directory
+cd "$SCRIPT_DIR"
+
+# Check if the JAR file already exists
+if [ ! -f "$JAR_NAME" ]; then
+    echo "Downloading $JAR_NAME..."
+    curl -L -o "$JAR_NAME" "$DOWNLOAD_URL"
+    if [ $? -ne 0 ]; then
+        echo "Failed to download $JAR_NAME"
+        exit 1
+    fi
+    echo "Download complete."
+else
+    echo "$JAR_NAME already exists."
+fi
+
+# Get the absolute path of the script directory
+PARENT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Compose the repositoryRoot parameter
+REPO_ROOT="stubs://file://${PARENT_DIR}/adapter/web/src/contractTest/resources/contracts"
+
+# Run the Stub Runner Boot application
+java -jar "$JAR_NAME" \
+    --stubrunner.stubsMode=REMOTE \
+    --stubrunner.ids=com.example.demo:web:$PORT \
+    --stubrunner.repositoryRoot="$REPO_ROOT" \
+    --stubrunner.generateStubs=true \
+    --spring.main.web-application-type=none

@@ -44,3 +44,13 @@
 adapter:persistence和configuration的自动化测试都使用adapter/persistence目录下的compose.yaml文件。
 
 对于`gradle bootRun`，使用configuration的compose.yaml文件。
+
+## Stub Runner Server for Frontend
+
+使用[Stub Runner Server Fat Jar](https://docs.spring.io/spring-cloud-contract/reference/project-features-stubrunner/stub-runner-boot.html#features-stub-runner-boot-how-fat-jar)。
+
+也曾考虑过使用[Stub Runner Server](https://docs.spring.io/spring-cloud-contract/reference/project-features-stubrunner/stub-runner-boot.html#features-stub-runner-boot-server)，因为可以省去脚本的麻烦，也可以使用最新的版本。但是repositoryRoot的配置不支持相对路径，所以还是选择了使用Stub Runner Server Fat Jar方式。
+
+`spring-cloud-contract-stub-runner-boot`最高可使用的版本是2.2.8.RELEASE，而其Groovy版本是2.5.10，支持Java 1.8和11，但不支持17或更高版本。
+
+选择的默认端口是16580，是第一个超过10000的莱兰数。

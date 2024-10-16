@@ -13,10 +13,10 @@
 - [x] add validation
 - [x] add create & update date in entity
 - [x] add codes in adapter/client
+- [x] stub runner for consumer
 - [ ] add codes in adapter/persistence-mpp
 - [ ] gradle withType
 - [ ] jacoco
 - [ ] check tools
 - [ ] json in persistence
 - [ ] re-consider unify all versions
-- [ ] stub runner for consumer
