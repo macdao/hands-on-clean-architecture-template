@@ -8,24 +8,25 @@
 
 - build.gradle.kts file in the root project
 
-使用了Gradle[推荐的方式](https://docs.gradle.org/current/userguide/gradle_directories.html)，没有在root project里放置build.gradle.kts。
+  使用了Gradle[推荐的方式](https://docs.gradle.org/current/userguide/gradle_directories.html)，没有在root project里放置build.gradle.kts。
 
-> Some builds may contain a build.gradle(.kts) file in the root project but this is NOT recommended.
+  > Some builds may contain a build.gradle(.kts) file in the root project but this is NOT recommended.
 
 - [Do not use cross-project configuration](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html#sec:convention_plugins_vs_cross_configuration)
 
-> Avoid using subprojects {} and allprojects {}. 
-> With cross-configuration, build logic can be injected into a subproject which is not obvious when looking at its build script.
+  > Avoid using subprojects {} and allprojects {}.
+  > With cross-configuration, build logic can be injected into a subproject which is not obvious when looking at its build script.
 
 - 使用[Dependency Management Plugin](https://docs.spring.io/dependency-management-plugin/docs/current/reference/html/)管理依赖。
 
-参考[Spring Boot/Gradle Plugin](https://docs.spring.io/spring-boot/gradle-plugin/managing-dependencies.html)。
+  参考[Spring Boot/Gradle Plugin](https://docs.spring.io/spring-boot/gradle-plugin/managing-dependencies.html)。
 
 - 手动声明测试框架实现依赖
 
-增加`junit-platform-launcher`依赖声明，参考[Relying on automatic test framework implementation dependencies](https://docs.gradle.org/8.10/userguide/upgrading_version_8.html#test_framework_implementation_dependencies)。
+  增加`junit-platform-launcher`依赖声明，参考[Relying on automatic test framework implementation dependencies](https://docs.gradle.org/8.10/userguide/upgrading_version_8.html#test_framework_implementation_dependencies)。
 
 - 使用[convention plugins](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html)管理重复的构建脚本。
+- 使用[Lazy APIs](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html#sec:old_vs_new_configuration_api_overview)，优化构建。
 
 ## subprojects说明
 

@@ -44,6 +44,23 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
 ## 项目结构
 
+```plantuml
+@startuml
+skinparam defaultFontName Fira Code, Monospaced
+
+[application] --> [domain]
+[adapter:web] --> [application]
+[adapter:persistence] --> [application]
+[adapter:client] --> [application]
+[adapter:...] --> [application]
+[configuration] --> [adapter:web]
+[configuration] --> [adapter:persistence]
+[configuration] --> [adapter:client]
+[configuration] --> [adapter:...]
+
+@enduml
+```
+
 ## IDE使用
 
 - Formatter：安装IDE插件[Spotless](https://github.com/diffplug/spotless)。
