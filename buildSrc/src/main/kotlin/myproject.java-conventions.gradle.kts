@@ -1,5 +1,6 @@
 plugins {
     `java-library`
+    jacoco
     id("io.spring.dependency-management")
     id("com.diffplug.spotless")
 }
@@ -52,8 +53,30 @@ spotless {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+    finalizedBy(tasks.named("jacocoTestReport"))
 }
 
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.add("-parameters")
+}
+
+tasks.named<JacocoReport>("jacocoTestReport") {
+    reports {
+        html.required = true
+    }
+    tasks.withType<Test>().forEach { executionData(it) }
+}
+
+tasks.named<JacocoCoverageVerification>("jacocoTestCoverageVerification") {
+    violationRules {
+        rule {
+            limit {
+                minimum = "0.7".toBigDecimal()
+            }
+        }
+    }
+}
+
+tasks.named("check") {
+    dependsOn(tasks.named("jacocoTestCoverageVerification"))
 }

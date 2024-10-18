@@ -16,7 +16,7 @@
 - [x] stub runner for consumer
 - [x] gradle withType
 - [x] re-consider unify all versions
+- [x] jacoco
 - [ ] add codes in adapter/persistence-mpp
-- [ ] jacoco
 - [ ] check tools
 - [ ] json in persistence
