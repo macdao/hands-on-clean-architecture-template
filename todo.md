@@ -15,8 +15,8 @@
 - [x] add codes in adapter/client
 - [x] stub runner for consumer
 - [x] gradle withType
+- [x] re-consider unify all versions
 - [ ] add codes in adapter/persistence-mpp
 - [ ] jacoco
 - [ ] check tools
 - [ ] json in persistence
-- [ ] re-consider unify all versions
