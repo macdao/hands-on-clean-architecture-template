@@ -22,6 +22,37 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
   使用`gradle bootBuildImage`构建docker镜像。这基于Spring Boot的Gradle插件。
 
+## 技术栈
+
+- 基础
+  - Java (21 LTS)
+  - Spring Boot (3.3.4)
+  - Spring Bean Validation
+  - Lombok
+  - JUnit 5
+  - AssertJ
+  - Mockito
+- 构建
+  - Gradle
+  - JaCoCo
+  - Spotless
+- Web
+  - Spring Web MVC
+  - Spring Cloud Contract Verifier
+  - Spring Security
+  - Spring Cloud Contract Stub Runner (for consumer)
+- Persistence
+  - Spring Data JPA
+  - MySQL (8 LTS)
+  - Flyway
+  - Spring Boot Docker Compose Support
+- Client
+  - Spring RestClient
+  - Spring Cloud Contract Stub Runner
+- 文档
+  - Markdown
+  - PlantUML
+
 ## 数据库
 
 为避免端口冲突，采用动态端口，需要通过Docker Compose查看数据库端口。
@@ -34,9 +65,9 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
   在`configuration`目录下执行`docker compose ps`，查看`PORTS`。
 
-## 契约消费者（例如前端）运行Stub Runner Server
+## 契约消费者（例如前端）自动化测试支持
 
-执行`scripts/run-stub-runner-server`。
+运行Stub Runner Server，执行`scripts/run-stub-runner-server`。
 
 - 使用adapter/web的契约。
 - 需要使用Java 1.8或者11，不支持Java 17或更高版本。
