@@ -1,4 +1,4 @@
-# HoCAT
+# HoCAT 🐾
 
 HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板。旨在成为项目的代码库模板选项之一。
 
