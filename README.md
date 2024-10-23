@@ -10,17 +10,21 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
 ## 项目使用
 
+- 前置条件
+  - 安装Java 21。
+  - 安装Docker和Docker Compose。
+
 - 测试构建
 
-  使用`gradle build`构建项目。
+  使用`./gradlew build`构建项目。
 
 - 本地运行
 
-  使用`gradle bootRun`运行本地环境。
+  使用`./gradlew bootRun`运行本地环境。
 
 - 打包
 
-  使用`gradle bootBuildImage`构建docker镜像。这基于Spring Boot的Gradle插件。
+  使用`./gradlew bootBuildImage`构建Docker镜像。这基于Spring Boot的Gradle插件。
 
 ## 技术栈
 
@@ -32,6 +36,7 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
   - JUnit 5
   - AssertJ
   - Mockito
+  - Docker & Docker Compose
 - 构建
   - Gradle
   - JaCoCo
