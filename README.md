@@ -102,3 +102,7 @@ skinparam defaultFontName Fira Code, Monospaced
 ## IDE使用
 
 - Formatter：安装IDE插件[Spotless](https://github.com/diffplug/spotless)。
+
+## 轻量级版本
+
+[HoCATLing](https://github.com/macdao/hands-on-clean-architecture-template-ling)，不拆分多个独立的组件，适用于小型项目。
