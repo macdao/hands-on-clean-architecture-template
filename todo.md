@@ -20,3 +20,4 @@
 - [ ] add codes in adapter/persistence-mpp
 - [ ] check tools
 - [ ] json in persistence
+- [ ] module convention plugin
