@@ -4,24 +4,24 @@ import com.example.demo.application.port.out.DeductInventoryPort;
 import com.example.demo.application.port.out.FindOrderPort;
 import com.example.demo.application.port.out.SaveOrderPort;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
 @SpringBootTest
 abstract class IntegrationTestBase {
-    @MockBean
+    @MockitoBean
     PlatformTransactionManager transactionManager;
 
-    @MockBean
+    @MockitoBean
     FindOrderPort findOrderPort;
 
-    @MockBean
+    @MockitoBean
     SaveOrderPort saveOrderPort;
 
-    @MockBean
+    @MockitoBean
     TransactionTemplate transactionTemplate;
 
-    @MockBean
+    @MockitoBean
     DeductInventoryPort deductInventoryPort;
 }
