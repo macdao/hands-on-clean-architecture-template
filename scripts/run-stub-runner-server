@@ -2,7 +2,14 @@
 
 # Set the version of Spring Cloud Contract Stub Runner Boot
 VERSION="2.2.8.RELEASE"
-PORT=16580
+
+# Set default values
+DEFAULT_CONTRACTS_PATH="adapter/web/src/contractTest/resources/contracts"
+DEFAULT_PORT=16580
+
+# Parse command line arguments
+CONTRACTS_PATH="${1:-$DEFAULT_CONTRACTS_PATH}"
+PORT="${2:-$DEFAULT_PORT}"
 
 JAR_NAME="spring-cloud-contract-stub-runner-boot-${VERSION}.jar"
 DOWNLOAD_URL="https://search.maven.org/remotecontent?filepath=org/springframework/cloud/spring-cloud-contract-stub-runner-boot/${VERSION}/${JAR_NAME}"
@@ -30,7 +37,10 @@ fi
 PARENT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # Compose the repositoryRoot parameter
-REPO_ROOT="stubs://file://${PARENT_DIR}/adapter/web/src/contractTest/resources/contracts"
+REPO_ROOT="stubs://file://${PARENT_DIR}/${CONTRACTS_PATH}"
+
+echo "Using contracts path: ${CONTRACTS_PATH}"
+echo "Using port: ${PORT}"
 
 # Run the Stub Runner Boot application
 java -jar "$JAR_NAME" \
