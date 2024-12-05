@@ -1,6 +1,6 @@
 plugins {
     id("myproject.java-conventions")
-    id("org.springframework.cloud.contract") version "4.1.4"
+    id("org.springframework.cloud.contract") version "4.2.0"
 }
 
 dependencies {
