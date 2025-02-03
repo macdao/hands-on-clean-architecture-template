@@ -1,6 +1,5 @@
 package com.example.demo.adapter.web.order;
 
-import com.example.demo.application.port.in.PayOrderUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,10 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class PayOrderController {
-    private final PayOrderUseCase payOrderUseCase;
+    private final PayOrderHandler payOrderHandler;
 
     @PostMapping("/orders/{orderId}/pay")
     public void payOrder(@PathVariable String orderId) {
-        payOrderUseCase.payOrder(orderId);
+        payOrderHandler.payOrder(orderId);
+    }
+
+    public interface PayOrderHandler {
+        void payOrder(String orderId);
     }
 }

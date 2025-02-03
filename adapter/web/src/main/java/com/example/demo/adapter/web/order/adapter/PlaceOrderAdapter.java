@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
 @Component
-public class PlaceOrderAdapter {
+public class PlaceOrderAdapter implements PlaceOrderController.PlaceOrderHandler {
     private final PlaceOrderUseCase placeOrderUseCase;
 
+    @Override
     public void placeOrder(
             @RequestBody @Valid PlaceOrderController.PlaceOrderRequest request,
             @AuthenticationPrincipal UserDetails user) {
