@@ -18,10 +18,10 @@ import org.springframework.security.core.userdetails.User;
 @ExtendWith(MockitoExtension.class)
 class PlaceOrderAdapterTest {
     @Mock
-    private PlaceOrderUseCase placeOrderUseCase;
+    PlaceOrderUseCase placeOrderUseCase;
 
     @InjectMocks
-    private PlaceOrderAdapter placeOrderAdapter;
+    PlaceOrderAdapter placeOrderAdapter;
 
     @Test
     void place_order_should_call_use_case() {
