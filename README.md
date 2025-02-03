@@ -85,16 +85,46 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 ```plantuml
 @startuml
 skinparam defaultFontName Fira Code, Monospaced
+skinparam RectangleBorderStyle<<Boundary>> dashed
+skinparam RectangleBackgroundColor White
+skinparam ComponentBackgroundColor WhiteSmoke
+hide <<Boundary>> stereotype
 
-[application] --> [domain]
-[adapter:web] --> [application]
-[adapter:persistence] --> [application]
-[adapter:client] --> [application]
-[adapter:...] --> [application]
-[configuration] --> [adapter:web]
-[configuration] --> [adapter:persistence]
-[configuration] --> [adapter:client]
-[configuration] --> [adapter:...]
+rectangle Boundary <<Boundary>> {
+  component application {
+    port UseCasePort
+    port PersistencePort
+    port ClientPort
+    port MorePort
+  }
+  [application] --> [domain]
+
+  component adapter:web {
+    rectangle web
+    rectangle web.adapter
+    web <-- web.adapter
+  }
+  [web.adapter] --> UseCasePort
+
+  component adapter:persistence {
+    rectangle persistence
+    rectangle persistence.adapter
+    [persistence] <-- [persistence.adapter]
+  }
+  [persistence.adapter] --> PersistencePort
+
+  component adapter:client {
+    rectangle client
+    rectangle client.adapter
+    [client] <-- [client.adapter]
+  }
+  [client.adapter] --> ClientPort
+
+  [adapter:...] --> MorePort
+}
+
+
+[configuration] --> Boundary
 
 @enduml
 ```

@@ -1,5 +1,7 @@
-package com.example.demo.adapter.persistence.order;
+package com.example.demo.adapter.persistence.order.adapter;
 
+import com.example.demo.adapter.persistence.order.OrderEntity;
+import com.example.demo.adapter.persistence.order.OrderEntityRepository;
 import com.example.demo.application.port.out.FindOrderPort;
 import com.example.demo.application.port.out.SaveOrderPort;
 import com.example.demo.domain.order.Order;
