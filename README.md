@@ -82,12 +82,17 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
 ## 项目结构
 
+![HoCAT Diagram](https://www.plantuml.com/plantuml/svg/ZPF1Rjim38RlUWe-m98768AWhO7kiWv5Yw67e0V6OXEXiYXGz0QZoBiFTk39SkAjr___67vXb9kaADestgHt5o8ADc3f3Lklznpq1pO4zquGAhRq1HuuS8fOavtmJrGhXeEdEnPBygoTfytcZjjWKRhj5Yocuy84rky7wScAFKinzN9qIjU6Uh7B9O6bGV-99V1Di9jm5JUH0mMTSz_TuQXBy5y9sBEtvkWiGU6Jb8HOkqZ6oAW28r2o7mQW7ZyPC4RlQbJ7OMW08el2pqGL9dfaqHm-aYINb48zAohlA6YPFR1aAZlTvdtF9BzSJJqmtGURrMe9omR_GxFJFwdHSfav6IYEj5fjOMUvGHTUJNbAYr59llwcFNpCldR5GOMz9vaLBxI_7UREHUPwexBjJNBGYqpFTjqbveDTE3rHvEIKfIkBwPMdRfdltMPKTYoBx3g9btthuLUxFDyGNmsdXkTaiCjb5Xkpx7HEHftTQB5Uhr_xFZ_Yap5cLtDuSuTMXeTm1iR_bRcXODl6_m40)
+
 ```plantuml
 @startuml
 skinparam defaultFontName Fira Code, Monospaced
 skinparam RectangleBorderStyle<<Boundary>> dashed
-skinparam RectangleBackgroundColor White
-skinparam ComponentBackgroundColor WhiteSmoke
+skinparam RectangleBackgroundColor<<Boundary>> White
+skinparam RectangleFontStyle<<Boundary>> normal
+skinparam RectangleBackgroundColor Gray
+skinparam ComponentBackgroundColor LightGray
+skinparam ComponentFontStyle bold
 hide <<Boundary>> stereotype
 
 rectangle Boundary <<Boundary>> {
@@ -96,29 +101,34 @@ rectangle Boundary <<Boundary>> {
     port PersistencePort
     port ClientPort
     port MorePort
+    rectangle ApplicationService
+    UseCasePort <-- ApplicationService
+    PersistencePort <-- ApplicationService
+    ClientPort <-- ApplicationService
+    MorePort <-- ApplicationService
   }
-  [application] --> [domain]
+  application --> [domain]
 
   component adapter:web {
-    rectangle web
-    rectangle web.adapter
-    web <-- web.adapter
+    rectangle Controller
+    rectangle WebAdapter
+    Controller <-- WebAdapter
   }
-  [web.adapter] --> UseCasePort
+  WebAdapter --> UseCasePort
 
   component adapter:persistence {
-    rectangle persistence
-    rectangle persistence.adapter
-    [persistence] <-- [persistence.adapter]
+    rectangle Repository
+    rectangle PersistenceAdapter
+    Repository <-- PersistenceAdapter
   }
-  [persistence.adapter] --> PersistencePort
+  PersistenceAdapter --> PersistencePort
 
   component adapter:client {
-    rectangle client
-    rectangle client.adapter
-    [client] <-- [client.adapter]
+    rectangle Client
+    rectangle ClientAdapter
+    Client <-- ClientAdapter
   }
-  [client.adapter] --> ClientPort
+  ClientAdapter --> ClientPort
 
   [adapter:...] --> MorePort
 }
