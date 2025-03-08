@@ -80,9 +80,9 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 - 需要使用Java 1.8或者11，不支持Java 17或更高版本。
 - 默认端口是16580。
 
-## 项目结构
+## 架构
 
-![HoCAT Diagram](https://www.plantuml.com/plantuml/svg/ZPF1Rjim38RlUWe-m98768AWhO7kiWv5Yw67e0V6OXEXiYXGz0QZoBiFTk39SkAjr___67vXb9kaADestgHt5o8ADc3f3Lklznpq1pO4zquGAhRq1HuuS8fOavtmJrGhXeEdEnPBygoTfytcZjjWKRhj5Yocuy84rky7wScAFKinzN9qIjU6Uh7B9O6bGV-99V1Di9jm5JUH0mMTSz_TuQXBy5y9sBEtvkWiGU6Jb8HOkqZ6oAW28r2o7mQW7ZyPC4RlQbJ7OMW08el2pqGL9dfaqHm-aYINb48zAohlA6YPFR1aAZlTvdtF9BzSJJqmtGURrMe9omR_GxFJFwdHSfav6IYEj5fjOMUvGHTUJNbAYr59llwcFNpCldR5GOMz9vaLBxI_7UREHUPwexBjJNBGYqpFTjqbveDTE3rHvEIKfIkBwPMdRfdltMPKTYoBx3g9btthuLUxFDyGNmsdXkTaiCjb5Xkpx7HEHftTQB5Uhr_xFZ_Yap5cLtDuSuTMXeTm1iR_bRcXODl6_m40)
+![HoCAT Diagram](https://www.plantuml.com/plantuml/svg/ZPHHQXin48RVTOevGEq356EIB4txq9JWKF9WGf5N4rj4gr57isrDoDtRjLYqbfMbJuP_lXdz_qZUgoYQfU-SYY_M1ysw0uFFkdToIrw-wGxXrhA6XWn-W3lo58DkqKpu3RQY_TxX3R51Vf2ZmzNgXdflD1_NQp0w7jxfqEtBdWUo8KTyrlLui8Arfi7OvI6UkDFkFmw1pwoF4wwXBf17BoNtrUuFKi1Vy8_Uavz7YxcZNuGTEQCErY2SMO-2Z2J7W4hnw1f6u9nzLG27P09q2CwsMYpvamuGY0M-Hsnqn7jYoU8zShHHqBT5eN4MlPnhTyIPoewkytaFoBziYmCmFGzMYyKxMEbW3isUvgZaSevvKt2sfCLY3Lj3dRR-IIc0ThmYq4O7GVxu6tVmMiHko0kJSyX5uH5tFpRuiySe_tvZ81-Jizm1YtKTkvXqdHmK_KEsebgTLt8fUnQ6wDEBggSF-Oekjh31GD4AyR4eVF9Y9OcP6NBdGgQdhs3qMdGEIUfKcbWZSkQoC6RFyap-zlJkBX_0IQwAzOjDjM47SrGvQveqAKFIMh4-jA3pIaOjRoCfuoAsO_xbSlaqrFC7u4qfjMt9FzjzpwS_KGB6Bv9IL-XDtxc_)
 
 ```plantuml
 @startuml
@@ -92,11 +92,12 @@ skinparam RectangleBackgroundColor<<Boundary>> White
 skinparam RectangleFontStyle<<Boundary>> normal
 skinparam RectangleBackgroundColor Gray
 skinparam ComponentBackgroundColor LightGray
+skinparam HexagonBackgroundColor LightGray
 skinparam ComponentFontStyle bold
 hide <<Boundary>> stereotype
 
 rectangle Boundary <<Boundary>> {
-  component application {
+  hexagon application {
     port UseCasePort
     port PersistencePort
     port ClientPort
@@ -111,24 +112,33 @@ rectangle Boundary <<Boundary>> {
 
   component adapter:web {
     rectangle Controller
+    rectangle Web_Request_Response
+    Controller -> Web_Request_Response
     rectangle WebAdapter
     Controller <-- WebAdapter
+    Web_Request_Response <-- WebAdapter
   }
   WebAdapter --> UseCasePort
 
   component adapter:persistence {
     rectangle Repository
+    rectangle Entity
+    Repository -> Entity
     rectangle PersistenceAdapter
     Repository <-- PersistenceAdapter
+    Entity <-- PersistenceAdapter
   }
   PersistenceAdapter --> PersistencePort
 
   component adapter:client {
     rectangle Client
+    rectangle Client_Request_Response
+    Client -> Client_Request_Response
     rectangle ClientAdapter
     Client <-- ClientAdapter
+    Client_Request_Response <-- ClientAdapter
   }
-  ClientAdapter --> ClientPort
+  ClientAdapter --> ClientPort 
 
   [adapter:...] --> MorePort
 }
