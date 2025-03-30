@@ -6,7 +6,7 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
 ## 项目说明
 
-查看文档[EXPLANATION.md](docs/EXPLANATION.md)。
+查看[HoCAT文档](.hocat)。
 
 ## 项目使用
 
