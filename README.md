@@ -82,7 +82,7 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
 ## 架构
 
-![HoCAT Diagram](https://www.plantuml.com/plantuml/svg/ZPHHQXin48RVTOevGEq356EIB4txq9JWKF9WGf5N4rj4gr57isrDoDtRjLYqbfMbJuP_lXdz_qZUgoYQfU-SYY_M1ysw0uFFkdToIrw-wGxXrhA6XWn-W3lo58DkqKpu3RQY_TxX3R51Vf2ZmzNgXdflD1_NQp0w7jxfqEtBdWUo8KTyrlLui8Arfi7OvI6UkDFkFmw1pwoF4wwXBf17BoNtrUuFKi1Vy8_Uavz7YxcZNuGTEQCErY2SMO-2Z2J7W4hnw1f6u9nzLG27P09q2CwsMYpvamuGY0M-Hsnqn7jYoU8zShHHqBT5eN4MlPnhTyIPoewkytaFoBziYmCmFGzMYyKxMEbW3isUvgZaSevvKt2sfCLY3Lj3dRR-IIc0ThmYq4O7GVxu6tVmMiHko0kJSyX5uH5tFpRuiySe_tvZ81-Jizm1YtKTkvXqdHmK_KEsebgTLt8fUnQ6wDEBggSF-Oekjh31GD4AyR4eVF9Y9OcP6NBdGgQdhs3qMdGEIUfKcbWZSkQoC6RFyap-zlJkBX_0IQwAzOjDjM47SrGvQveqAKFIMh4-jA3pIaOjRoCfuoAsO_xbSlaqrFC7u4qfjMt9FzjzpwS_KGB6Bv9IL-XDtxc_)
+![HoCAT Diagram](https://www.plantuml.com/plantuml/svg/ZPHHRjim38RVTGeUOCa10iDeQwpRmpeKAOO-1CMWs6mYL1OrYjuMjBtx4XcUR4S8-XJWvqVgvo_5Lq4qIzTQ5LwCyvfr2mq-wyxABJdvhbk4MyCQAchm4zoHe-1rZSs8NsCjskqitX0to0zoi5WKDzIvHlEXBA7HOO_v3bs_xFX4LcI99rsFUoEOQpePEp_44RVQVk0G-CBwCE8gQZqvT3BdlfdTNcRmL_ohT-G-WAQv__t2bcoZzgP1c5WFWema1uzAyU0Q1c3AlYg0VMy2jFVMr5eCkQW3U6A17m4h7V2UM99uZnnC47Jrh51PWqwcsXrnefAZwtJU0_9lKsC4HkT1yRPOPBWLb16TkO0YIqSq-Rf4HQSNcNS5aw0MYn8s3RNQk2TrhDN3DO5kj1VarH_SmkjizOgSC5cBF2iyulRd6dzr6EJu6povq3jB7R0eizZvfElUmRm_XfhAGvYvcL1Cq7x_aH3N7rrOFW6VhkaiYJLw2aQ83xF2PoT6UZ4nfzrJ8T7Zbv2yZZlZ9dcgdvWbqiwZGjhzhPm_mHKK-Gpg-FxE7qAKisB-WllQCOUBr7pMUDjUYTjcYlcX6Jh6ahIKI2-DmjWC6IoNowSZKwOFmhjIQbEJUpQxZkCVgWU6BvHIL-YQhhN_0000)
 
 ```plantuml
 @startuml
@@ -103,7 +103,7 @@ rectangle Boundary <<Boundary>> {
     port ClientPort
     port MorePort
     rectangle ApplicationService
-    UseCasePort <-- ApplicationService
+    UseCasePort <|-- ApplicationService: >
     PersistencePort <-- ApplicationService
     ClientPort <-- ApplicationService
     MorePort <-- ApplicationService
@@ -115,7 +115,7 @@ rectangle Boundary <<Boundary>> {
     rectangle Web_Request_Response
     Controller -> Web_Request_Response
     rectangle WebAdapter
-    Controller <-- WebAdapter
+    Controller <|-- WebAdapter: >
     Web_Request_Response <-- WebAdapter
   }
   WebAdapter --> UseCasePort
@@ -128,7 +128,7 @@ rectangle Boundary <<Boundary>> {
     Repository <-- PersistenceAdapter
     Entity <-- PersistenceAdapter
   }
-  PersistenceAdapter --> PersistencePort
+  PersistenceAdapter --|> PersistencePort: <
 
   component adapter:client {
     rectangle Client
@@ -138,7 +138,7 @@ rectangle Boundary <<Boundary>> {
     Client <-- ClientAdapter
     Client_Request_Response <-- ClientAdapter
   }
-  ClientAdapter --> ClientPort 
+  ClientAdapter --|> ClientPort: <
 
   [adapter:...] --> MorePort
 }

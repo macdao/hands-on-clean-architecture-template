@@ -16,6 +16,7 @@ import static org.springframework.data.relational.core.mapping.Embedded.OnEmpty.
 @Getter
 @AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor_ = @PersistenceCreator)
 public class Person {
+    // use Spring Data JDBC to map your domain objects
     @Id
     private final PersonId id;
 
