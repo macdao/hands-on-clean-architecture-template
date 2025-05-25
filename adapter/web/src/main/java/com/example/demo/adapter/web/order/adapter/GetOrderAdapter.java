@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class GetOrderAdapter implements GetOrderController.GetOrderHandler {
+public class GetOrderAdapter implements GetOrderController {
     private final GetOrderQuery getOrderQuery;
 
     @Override

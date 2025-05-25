@@ -1,22 +1,20 @@
 package com.example.demo.adapter.web.order;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.math.BigDecimal;
 import java.time.Instant;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
-public class GetOrderController {
-    private final GetOrderHandler getOrderHandler;
-
+public interface GetOrderController {
     @GetMapping("/orders/{orderId}")
-    public GetOrderResponse getOrder(@PathVariable String orderId) {
-        return getOrderHandler.getOrder(orderId);
-    }
+    GetOrderResponse getOrder(@PathVariable String orderId);
 
-    public record GetOrderResponse(
+    record GetOrderResponse(
             String id,
             String buyerId,
             String productId,
@@ -25,8 +23,4 @@ public class GetOrderController {
             BigDecimal price,
             Instant createdDate,
             Instant lastModifiedDate) {}
-
-    public interface GetOrderHandler {
-        GetOrderResponse getOrder(@PathVariable String orderId);
-    }
 }

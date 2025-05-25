@@ -28,7 +28,7 @@ public abstract class OrdersBase extends ContractTestBase {
 
         doThrow(new RuntimeException("Unexpected error")).when(payOrderUseCase).payOrder("order-id-3");
 
-        when(getOrderHandler.getOrder("order-id-1"))
+        when(getOrderController.getOrder("order-id-1"))
                 .thenReturn(new GetOrderController.GetOrderResponse(
                         "order-id-1",
                         "user-id-1",
@@ -38,7 +38,7 @@ public abstract class OrdersBase extends ContractTestBase {
                         new BigDecimal("100.0"),
                         Instant.parse("2025-02-03T15:00:00.00Z"),
                         Instant.parse("2025-02-03T15:00:00.00Z")));
-        when(getOrderHandler.getOrder("order-id-2")).thenThrow(new OrderNotFoundException("Order not found"));
+        when(getOrderController.getOrder("order-id-2")).thenThrow(new OrderNotFoundException("Order not found"));
     }
 
     @AfterEach

@@ -23,7 +23,7 @@ abstract class ContractTestBase {
     PlaceOrderController.PlaceOrderHandler placeOrderHandler;
 
     @MockitoBean
-    GetOrderController.GetOrderHandler getOrderHandler;
+    GetOrderController getOrderController;
 
     @BeforeEach
     public void setup() {
