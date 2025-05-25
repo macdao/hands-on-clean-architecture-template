@@ -20,13 +20,15 @@ public abstract class OrdersBase extends ContractTestBase {
     public void setup() {
         super.setup();
 
-        doThrow(new IllegalStateException()).when(payOrderUseCase).payOrder("order-id-2");
+        doThrow(new IllegalStateException()).when(payOrderController).payOrder("order-id-2");
         doThrow(new ConstraintViolationException("Invalid order", null))
-                .when(placeOrderHandler)
+                .when(placeOrderController)
                 .placeOrder(argThat(command -> command.price() == null), argThat(user -> user.getUsername()
                         .equals("user-token")));
 
-        doThrow(new RuntimeException("Unexpected error")).when(payOrderUseCase).payOrder("order-id-3");
+        doThrow(new RuntimeException("Unexpected error"))
+                .when(payOrderController)
+                .payOrder("order-id-3");
 
         when(getOrderController.getOrder("order-id-1"))
                 .thenReturn(new GetOrderController.GetOrderResponse(
@@ -46,7 +48,7 @@ public abstract class OrdersBase extends ContractTestBase {
         if (testInfo.getTestMethod()
                 .filter(method -> method.getName().equals("validate_place_a_new_order"))
                 .isPresent()) {
-            verify(placeOrderHandler)
+            verify(placeOrderController)
                     .placeOrder(
                             assertArg(request -> {
                                 assertThat(request.productId()).isEqualTo("product-id-1");

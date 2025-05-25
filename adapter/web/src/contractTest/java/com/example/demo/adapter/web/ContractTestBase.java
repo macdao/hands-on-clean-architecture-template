@@ -1,8 +1,8 @@
 package com.example.demo.adapter.web;
 
 import com.example.demo.adapter.web.order.GetOrderController;
+import com.example.demo.adapter.web.order.PayOrderController;
 import com.example.demo.adapter.web.order.PlaceOrderController;
-import com.example.demo.application.port.in.PayOrderUseCase;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ abstract class ContractTestBase {
     WebApplicationContext context;
 
     @MockitoBean
-    PayOrderUseCase payOrderUseCase;
+    PayOrderController payOrderController;
 
     @MockitoBean
-    PlaceOrderController.PlaceOrderHandler placeOrderHandler;
+    PlaceOrderController placeOrderController;
 
     @MockitoBean
     GetOrderController getOrderController;
