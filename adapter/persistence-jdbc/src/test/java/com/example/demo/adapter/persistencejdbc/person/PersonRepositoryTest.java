@@ -1,18 +1,17 @@
 package com.example.demo.adapter.persistencejdbc.person;
 
+import static org.assertj.core.api.Assertions.*;
+
 import com.example.demo.application.port.out.SavePersonPort;
 import com.example.demo.domain.person.Address;
 import com.example.demo.domain.person.Person;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-
-import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 @Transactional

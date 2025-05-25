@@ -1,5 +1,9 @@
 package com.example.demo.adapter.web.order.adapter;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.from;
+import static org.mockito.Mockito.when;
+
 import com.example.demo.adapter.web.order.GetOrderController;
 import com.example.demo.application.port.in.GetOrderQuery;
 import com.example.demo.domain.order.Order;
@@ -7,18 +11,13 @@ import com.example.demo.domain.order.OrderId;
 import com.example.demo.domain.order.OrderStatus;
 import com.example.demo.domain.product.ProductId;
 import com.example.demo.domain.user.UserId;
+import java.math.BigDecimal;
+import java.time.Instant;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.math.BigDecimal;
-import java.time.Instant;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.from;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GetOrderAdapterTest {

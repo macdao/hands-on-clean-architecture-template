@@ -1,12 +1,11 @@
 package com.example.demo.adapter.persistencejdbc;
 
 import com.example.demo.domain.person.Person;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 class JdbcConfiguration extends AbstractJdbcConfiguration {

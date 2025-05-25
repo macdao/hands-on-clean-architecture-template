@@ -1,5 +1,7 @@
 package com.example.demo.adapter.client.inventory;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,6 @@ import org.springframework.cloud.contract.stubrunner.spring.StubRunnerPort;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClient;
-
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @SpringBootTest
 @AutoConfigureStubRunner(ids = "client:inventory", generateStubs = true)

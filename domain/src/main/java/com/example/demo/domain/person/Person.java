@@ -1,6 +1,9 @@
 package com.example.demo.domain.person;
 
+import static org.springframework.data.relational.core.mapping.Embedded.OnEmpty.USE_NULL;
+
 import com.example.demo.domain.Identities;
+import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,10 +11,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Embedded;
-
-import java.time.Instant;
-
-import static org.springframework.data.relational.core.mapping.Embedded.OnEmpty.USE_NULL;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor_ = @PersistenceCreator)
