@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation(project(":adapter:web"))
+    implementation(project(":adapter:web-openapi"))
     implementation(project(":adapter:persistence"))
     // alternative to persistence (jpa)
     // implementation(project(":adapter:persistence-jdbc"))
