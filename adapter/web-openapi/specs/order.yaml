@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: Order API
+  version: 1
+ErrorResponses: &error_responses
+  '400':
+    $ref: './components/responses.yaml#/400'
+  '401':
+    $ref: './components/responses.yaml#/401'
+  '403':
+    $ref: './components/responses.yaml#/403'
+  '404':
+    $ref: './components/responses.yaml#/404'
+  '409':
+    $ref: './components/responses.yaml#/409'
+  '500':
+    $ref: './components/responses.yaml#/500'
+paths:
+  /orders:
+    post:
+      summary: Place an order
+      operationId: placeOrder
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '201':
+          description: Order created successfully
+        <<: *error_responses
+  /orders/{orderId}:
+    get:
+      summary: Find order by ID
+      operationId: getOrder
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        <<: *error_responses
+  /orders/{orderId}/pay:
+    post:
+      summary: Pay for an order
+      operationId: payOrder
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment successful
+        <<: *error_responses
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    CreateOrderRequest:
+      type: object
+      required:
+        - productId
+        - quantity
+        - price
+      properties:
+        productId:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+        price:
+          type: number
+          format: float
+          minimum: 0
+    OrderResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        buyerId:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: integer
+        status:
+          type: string
+          enum: [CREATED, PAID, CANCELLED]
+        price:
+          type: number
+          format: float
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time

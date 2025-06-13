@@ -1,0 +1,24 @@
+openapi: 3.0.0
+ErrorResponse: &error_response
+  content:
+    application/problem+json:
+      schema:
+        $ref: './schemas.yaml#/ProblemDetails'
+'400':
+  description: Bad Request
+  <<: *error_response
+'401':
+  description: Unauthorized
+  <<: *error_response
+'403':
+  description: Forbidden
+  <<: *error_response
+'404':
+  description: Not Found
+  <<: *error_response
+'409':
+  description: Conflict
+  <<: *error_response
+'500':
+  description: Internal Server Error
+  <<: *error_response

@@ -48,13 +48,41 @@
 
 ## subprojects说明
 
-- domain：领域层，包含领域模型和领域服务
-- application：应用层，包含应用服务
-- adapter：适配器层，包含Web适配器、持久化适配器、客户端适配器等
-- adapter:web：Web适配器
-- adapter:persistence：持久化适配器
-- adapter:client：客户端适配器
-- configuration：配置层
+### domain
+
+领域层，包含领域模型和领域服务。
+
+### application
+
+应用层，包含应用服务。
+
+### configuration
+
+配置层，包含Application和Bean配置。
+
+### adapter
+
+适配器层，包含Web适配器、持久化适配器、客户端适配器等。
+
+### adapter:web
+
+使用Spring MVC的Web组件。
+
+### adapter:web-openapi
+
+Web适配器，使用OpenAPI Generator，根据OpenAPI规范生成Web接口。
+
+### adapter:persistence
+
+持久化适配器，使用Spring Data JPA。
+
+### adapter:persistence-jdbc
+
+使用Spring Data JDBC的持久化适配器，支持直接使用领域模型作为持久化实体。
+
+### adapter:client
+
+客户端适配器，使用RestClient。
 
 ## 测试策略
 

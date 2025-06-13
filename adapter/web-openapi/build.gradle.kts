@@ -15,13 +15,14 @@ dependencies {
     implementation(project(":application"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.assertj:assertj-core")
+    testImplementation("org.mockito:mockito-junit-jupiter")
 }
 
 openApiGenerate {
     generatorName = "spring"
-    inputSpec = "${layout.projectDirectory}/src/main/resources/specs/petstore.yaml"
-    // inputSpecRootDirectory
-    // mergedFileName
+    inputSpecRootDirectory = "${layout.projectDirectory}/specs"
     globalProperties =
         mapOf(
             "models" to "",
