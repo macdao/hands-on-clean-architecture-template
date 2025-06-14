@@ -53,32 +53,38 @@ spotless {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
-    finalizedBy(tasks.named("jacocoTestReport"))
 }
 
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.add("-parameters")
 }
 
+tasks.withType<JacocoReportBase>().configureEach {
+    tasks.withType<Test>().forEach { executionData(it) }
+
+    classDirectories.setFrom(classDirectories.files.flatMap {
+        fileTree(it) {
+            exclude("com/example/demo/DemoApplication.class")
+        }
+    })
+}
+
 tasks.named<JacocoReport>("jacocoTestReport") {
     reports {
         html.required = true
     }
-    tasks.withType<Test>().forEach { executionData(it) }
 }
 
 tasks.named<JacocoCoverageVerification>("jacocoTestCoverageVerification") {
-    tasks.withType<Test>().forEach { executionData(it) }
-
     violationRules {
         rule {
             limit {
-                minimum = "0.7".toBigDecimal()
+                minimum = "0.8".toBigDecimal()
             }
         }
     }
 }
 
 tasks.named("check") {
-    dependsOn(tasks.named("jacocoTestCoverageVerification"))
+    dependsOn("jacocoTestReport", "jacocoTestCoverageVerification")
 }
