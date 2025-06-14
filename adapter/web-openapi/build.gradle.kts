@@ -32,7 +32,6 @@ openApiGenerate {
         mapOf(
             "apiPackage" to "com.example.demo.adapter.webopenapi.api",
             "modelPackage" to "com.example.demo.adapter.webopenapi.model",
-            "invokerPackage" to "com.example.demo.adapter.webopenapi2",
             "interfaceOnly" to "true",
             "skipDefaultInterface" to "true",
             "requestMappingMode" to "api_interface",
@@ -41,6 +40,8 @@ openApiGenerate {
             "useSpringBoot3" to "true",
             "useSpringController" to "true",
             "openApiNullable" to "false",
+            "additionalEnumTypeAnnotations" to "@lombok.Generated",
+            "additionalModelTypeAnnotations" to "@lombok.Generated",
         )
 }
 
