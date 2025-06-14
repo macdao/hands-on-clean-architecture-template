@@ -46,5 +46,5 @@ openApiGenerate {
 }
 
 tasks.named("compileJava") {
-    dependsOn(tasks.named("openApiGenerate"))
+    dependsOn("openApiGenerate")
 }
