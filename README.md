@@ -8,7 +8,7 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
 ## 项目说明
 
-查看[HoCAT文档](.hocat)。
+本文档介绍本项目的使用方式。 更多关于HoCAT的信息，请查看[HoCAT文档](.hocat)。
 
 ## 项目使用
 
@@ -29,6 +29,22 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 - 打包
 
   使用`./gradlew bootBuildImage`构建Docker镜像。这基于Spring Boot的Gradle插件。
+
+### 数据库
+
+为避免端口冲突，采用动态端口，需要通过Docker Compose查看数据库端口。
+
+- 查看自动化测试数据库
+
+  在`adapter/persistence`目录下执行`docker compose ps`，查看`PORTS`。
+
+- 查看本地运行数据库
+
+  在`configuration`目录下执行`docker compose ps`，查看`PORTS`。
+
+### IDE使用
+
+- Formatter：安装IDE插件[Spotless](https://github.com/diffplug/spotless)。
 
 ## 技术栈
 
@@ -61,26 +77,6 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 - 文档
   - Markdown
   - PlantUML
-
-## 数据库
-
-为避免端口冲突，采用动态端口，需要通过Docker Compose查看数据库端口。
-
-- 查看自动化测试数据库
-
-  在`adapter/persistence`目录下执行`docker compose ps`，查看`PORTS`。
-
-- 查看本地运行数据库
-
-  在`configuration`目录下执行`docker compose ps`，查看`PORTS`。
-
-## 契约消费者（例如前端）自动化测试支持
-
-运行Stub Runner Server，执行`scripts/run-stub-runner-server`。
-
-- 使用adapter/web的契约。
-- 需要使用Java 1.8或者11，不支持Java 17或更高版本。
-- 默认端口是16580。
 
 ## 架构
 
@@ -150,10 +146,6 @@ rectangle Boundary <<Boundary>> {
 
 @enduml
 ```
-
-## IDE使用
-
-- Formatter：安装IDE插件[Spotless](https://github.com/diffplug/spotless)。
 
 ## 轻量级版本
 

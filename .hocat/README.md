@@ -1,4 +1,4 @@
-# 项目说明
+# HoCAT项目说明
 
 ## 特点
 
@@ -20,9 +20,9 @@
 
 ## 初始化
 
-项目使用Spring Initializr创建。具体参数为：`https://start.spring.io/#!type=gradle-project-kotlin&language=java&platformVersion=3.3.4&packaging=jar&jvmVersion=21&groupId=com.example&artifactId=demo&name=demo&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.demo&dependencies=lombok,validation,web,cloud-contract-verifier,data-jpa,flyway,mysql,cloud-contract-stub-runner,security,actuator`。
+项目最初使用Spring Initializr创建。具体参数为：`https://start.spring.io/#!type=gradle-project-kotlin&language=java&platformVersion=3.3.4&packaging=jar&jvmVersion=21&groupId=com.example&artifactId=demo&name=demo&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.demo&dependencies=lombok,validation,web,cloud-contract-verifier,data-jpa,flyway,mysql,cloud-contract-stub-runner,security,actuator`。
 
-## build.gradle.kts说明
+## Gradle使用说明
 
 - build.gradle.kts file in the root project
 
@@ -46,21 +46,27 @@
 - 使用[convention plugins](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html)管理重复的构建脚本。
 - 使用[Lazy APIs](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html#sec:old_vs_new_configuration_api_overview)，优化构建。
 
-## subprojects说明
+## 核心模块说明
 
 ### domain
 
 领域层，包含领域模型和领域服务。
 
+- 测试策略
+
+使用单元测试。因为domain不依赖其他模块，所以可以方便的进行单元测试。
+
 ### application
 
 应用层，包含应用服务。
 
-### configuration
+- 测试策略
 
-配置层，包含Application和Bean配置。
+大部分使用单元测试。application依赖domain，大部分情况可以连带domain一起测试，不用可以使用测试替身；同时，application定义了输出端口，测试时需要使用测试替身。
 
-### adapter
+小部分使用包含框架的集成测试。application会使用框架的一些特性，如校验和事务等，如果要测试这个功能，需要在Spring Boot Application的环境里进行测试。
+
+## 适配器模块说明
 
 适配器层，包含Web适配器、持久化适配器、客户端适配器等。
 
@@ -68,63 +74,21 @@
 
 使用Spring MVC的Web组件。
 
-### adapter:web-openapi
+- 测试策略
 
-Web适配器，使用OpenAPI Generator，根据OpenAPI规范生成Web接口。
+使用契约定义和契约测试。契约可以作为对后端接口的测试，也可以作为前端测试的Stub Server。
 
-### adapter:persistence
+测试范围包含模块本身和Spring MVC框架。因为web需要使用Spring MVC框架的能力，需要在Spring Boot Application的环境里进行测试。其依赖的位于application的输入端口，采用测试替身。
 
-持久化适配器，使用Spring Data JPA。
+web主要提供对外HTTP接口，所以主要测试其对外提供的接口是否符合预期。具体方式为契约测试。
 
-### adapter:persistence-jdbc
+#### 契约消费者（例如前端）自动化测试支持
 
-使用Spring Data JDBC的持久化适配器，支持直接使用领域模型作为持久化实体。
+运行Stub Runner Server，执行`scripts/run-stub-runner-server`。
 
-### adapter:client
-
-客户端适配器，使用RestClient。
-
-## 测试策略
-
-说明测试的范围，测试运行的环境，依赖如何处理。
-
-- domain
-
-  使用单元测试。因为domain不依赖其他模块，所以可以方便的进行单元测试。
-
-- application
-
-  大部分使用单元测试。application依赖domain，大部分情况可以连带domain一起测试，不用可以使用测试替身；同时，application定义了输出端口，测试时需要使用测试替身。
-
-  小部分使用包含框架的集成测试。application会使用框架的一些特性，如校验和事务等，如果要测试这个功能，需要在Spring Boot Application的环境里进行测试。
-
-- adapter:web
-
-  测试范围包含模块本身和Spring MVC框架。因为web需要使用Spring MVC框架的能力，需要在Spring Boot Application的环境里进行测试。其依赖的位于application的输入端口，采用测试替身。
-
-  web主要提供对外HTTP接口，所以主要测试其对外提供的接口是否符合预期。具体方式为契约测试。
-
-- adapter:persistence
-
-  测试范围包含模块本身、持久化框架和数据库。因为persistence需要使用框架的能力，需要在Spring Boot Application的环境里进行测试。其依赖的数据库，使用Docker Compose定义，随测试启动。
-
-- adapter:client
-
-  测试范围包含模块本身和三方系统接口契约。因为使用Stub Runner运行三方系统接口契约，所以在Spring Boot Application的环境里进行测试。其依赖的三方系统，使用契约定义三方系统接口，通过Stub Runner随测试启动。
-
-- configuration
-
-  测试范围包含所有模块和框架。在Spring Boot Application的环境里进行测试。对于其依赖的数据库，使用Docker Compose定义，随测试启动。其依赖的三方系统，使用契约定义三方系统接口，通过Stub Runner随测试启动。
-
-## 自动化测试的数据库
-
-使用[Docker Compose Support](https://docs.spring.io/spring-boot/reference/features/dev-services.html)，在测试时自动启动MySQL容器。需要安装Docker和Docker Compose。
-
-adapter:persistence和configuration的自动化测试都使用adapter/persistence目录下的compose.yaml文件。
-
-对于`gradle bootRun`，使用configuration的compose.yaml文件。
-
-## Stub Runner Server for Frontend
+- 使用adapter/web的契约。
+- 需要使用Java 1.8或者11，不支持Java 17或更高版本。
+- 默认端口是16580。
 
 使用[Stub Runner Server Fat Jar](https://docs.spring.io/spring-cloud-contract/reference/project-features-stubrunner/stub-runner-boot.html#features-stub-runner-boot-how-fat-jar)。
 
@@ -134,8 +98,51 @@ adapter:persistence和configuration的自动化测试都使用adapter/persistenc
 
 选择的默认端口是16580，是第一个超过10000的莱兰数。
 
+### adapter:web-openapi
+
+Web适配器，使用OpenAPI Generator，根据OpenAPI规范生成Web接口。只需要编写适配器代码，用以连接生成的接口和应用层的用例接口。
+
+### adapter:persistence
+
+持久化适配器，使用Spring Data JPA。
+
+- 测试策略
+
+测试范围包含模块本身、持久化框架和数据库。因为persistence需要使用框架的能力，需要在Spring Boot Application的环境里进行测试。其依赖的数据库，使用Docker Compose定义，随测试启动。
+
+### adapter:persistence-jdbc
+
+使用Spring Data JDBC的持久化适配器，支持直接使用领域模型作为持久化实体。
+
+### adapter:client
+
+客户端适配器，使用RestClient。
+
+- 测试策略
+
+- 测试范围包含模块本身和三方系统接口契约。因为使用Stub Runner运行三方系统接口契约，所以在Spring Boot Application的环境里进行测试。其依赖的三方系统，使用契约定义三方系统接口，通过Stub Runner随测试启动。
+
+- configuration
+
+## configuration
+
+配置层，包含Application和Bean配置。
+
+- 测试策略
+
+测试范围包含所有模块和框架。在Spring Boot Application的环境里进行测试。对于其依赖的数据库，使用Docker Compose定义，随测试启动。其依赖的三方系统，使用契约定义三方系统接口，通过Stub Runner随测试启动。
+
+## 自动化测试的数据库
+
+使用[Docker Compose Support](https://docs.spring.io/spring-boot/reference/features/dev-services.html)，在测试时自动启动MySQL容器。需要安装Docker和Docker Compose。
+
+adapter:persistence和configuration的自动化测试都使用adapter/persistence目录下的compose.yaml文件。
+
+对于`gradle bootRun`，使用configuration的compose.yaml文件。
+
 ## 参考
 
 - [架构整洁之道](https://book.douban.com/subject/30333919/)
 - [Get Your Hands Dirty on Clean Architecture](https://reflectoring.io/book/)
 - [六边形架构](https://alistair.cockburn.us/hexagonal-architecture/)
+- [整洁架构落地指南](https://www.zhihu.com/column/c_1839245367729864704)
