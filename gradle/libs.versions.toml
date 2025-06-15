@@ -1,6 +1,6 @@
 [versions]
-spring-boot = "3.4.2"
-spring-cloud = "2024.0.0"
+spring-boot = "3.5.0"
+spring-cloud = "2025.0.0"
 
 [libraries]
 springBootDependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }

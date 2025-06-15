@@ -1,6 +1,6 @@
 plugins {
     id("common-conventions")
-    id("org.springframework.cloud.contract") version "4.2.0"
+    id("org.springframework.cloud.contract") version "4.3.0"
 }
 
 dependencies {
