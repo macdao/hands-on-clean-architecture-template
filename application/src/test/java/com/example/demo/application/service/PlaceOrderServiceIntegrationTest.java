@@ -3,12 +3,27 @@ package com.example.demo.application.service;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.demo.application.port.in.PlaceOrderUseCase.PlaceOrderCommand;
+import com.example.demo.application.port.out.DeductInventoryPort;
+import com.example.demo.application.port.out.SaveOrderPort;
 import jakarta.validation.ConstraintViolationException;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.support.TransactionTemplate;
 
+@SpringJUnitConfig(PlaceOrderService.class)
 class PlaceOrderServiceIntegrationTest extends IntegrationTestBase {
+
+    @MockitoBean
+    SaveOrderPort saveOrderPort;
+
+    @MockitoBean
+    DeductInventoryPort deductInventoryPort;
+
+    @MockitoBean
+    TransactionTemplate transactionTemplate;
 
     @Autowired
     PlaceOrderService placeOrderService;

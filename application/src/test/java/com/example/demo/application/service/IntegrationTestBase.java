@@ -1,27 +1,34 @@
 package com.example.demo.application.service;
 
-import com.example.demo.application.port.out.DeductInventoryPort;
-import com.example.demo.application.port.out.FindOrderPort;
-import com.example.demo.application.port.out.SaveOrderPort;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.support.TransactionTemplate;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
-@SpringBootTest
+@EnableTransactionManagement(proxyTargetClass = true)
+@ContextConfiguration
 abstract class IntegrationTestBase {
     @MockitoBean
     PlatformTransactionManager transactionManager;
 
-    @MockitoBean
-    FindOrderPort findOrderPort;
+    // if you need validation
+    @Configuration
+    static class ValidationConfiguration {
+        @Bean
+        public LocalValidatorFactoryBean validator() {
+            return new LocalValidatorFactoryBean();
+        }
 
-    @MockitoBean
-    SaveOrderPort saveOrderPort;
-
-    @MockitoBean
-    TransactionTemplate transactionTemplate;
-
-    @MockitoBean
-    DeductInventoryPort deductInventoryPort;
+        @Bean
+        public static MethodValidationPostProcessor validationPostProcessor() {
+            MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
+            // can handle class (without interface) and align with ValidationAutoConfiguration in spring boot
+            processor.setProxyTargetClass(true);
+            return processor;
+        }
+    }
 }

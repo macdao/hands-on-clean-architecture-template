@@ -2,19 +2,28 @@ package com.example.demo.application.service;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import com.example.demo.application.port.in.OrderNotFoundException;
+import com.example.demo.application.port.out.FindOrderPort;
+import com.example.demo.application.port.out.SaveOrderPort;
 import com.example.demo.domain.order.Order;
 import com.example.demo.domain.order.OrderId;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.support.SimpleTransactionStatus;
 
+@SpringJUnitConfig(PayOrderService.class)
 class PayOrderServiceIntegrationTest extends IntegrationTestBase {
+    @MockitoBean
+    FindOrderPort findOrderPort;
+
+    @MockitoBean
+    SaveOrderPort saveOrderPort;
+
     @Autowired
     PayOrderService payOrderService;
 
