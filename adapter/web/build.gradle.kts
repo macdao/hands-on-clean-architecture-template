@@ -1,5 +1,5 @@
 plugins {
-    id("myproject.java-conventions")
+    id("common-conventions")
     id("org.springframework.cloud.contract") version "4.2.0"
 }
 

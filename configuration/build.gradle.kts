@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.springBoot)
-    id("myproject.java-conventions")
+    id("common-conventions")
 }
 
 dependencies {

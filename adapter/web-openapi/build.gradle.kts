@@ -1,5 +1,5 @@
 plugins {
-    id("myproject.java-conventions")
+    id("common-conventions")
     id("org.openapi.generator") version "7.13.0"
 }
 
