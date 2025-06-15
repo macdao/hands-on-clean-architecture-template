@@ -1,5 +1,7 @@
 # HoCAT 🐾
 
+[![Java CI with Gradle](https://github.com/macdao/hands-on-clean-architecture-template/actions/workflows/gradle.yml/badge.svg)](https://github.com/macdao/hands-on-clean-architecture-template/actions/workflows/gradle.yml)
+
 HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板。旨在成为项目的代码库模板选项之一。
 
 使用了当前最新的技术和工具、推荐的使用/配置方式和最佳实践。
@@ -32,7 +34,7 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
 
 - 基础
   - Java (21 LTS)
-  - Spring Boot (3.4.0)
+  - Spring Boot (3.5)
   - Spring Bean Validation
   - Lombok
   - JUnit 5
