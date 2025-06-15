@@ -7,7 +7,9 @@ tasks.withType<JacocoReportBase>().configureEach {
 
     classDirectories.setFrom(classDirectories.files.flatMap {
         fileTree(it) {
-            exclude("com/example/demo/DemoApplication.class")
+            exclude(
+                // "com/example/demo/DemoApplication.class"
+            )
         }
     })
 }
