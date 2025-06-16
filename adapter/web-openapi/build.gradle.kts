@@ -15,9 +15,6 @@ dependencies {
     implementation(project(":application"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.assertj:assertj-core")
-    testImplementation("org.mockito:mockito-junit-jupiter")
 }
 
 openApiGenerate {
