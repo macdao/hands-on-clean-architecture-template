@@ -9,12 +9,15 @@ import jakarta.validation.ConstraintViolationException;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.support.TransactionTemplate;
 
-@SpringJUnitConfig(PlaceOrderService.class)
-class PlaceOrderServiceIntegrationTest extends IntegrationTestBase {
+@SpringBootTest(classes = PlaceOrderService.class)
+// enable validation
+@EnableAutoConfiguration
+class PlaceOrderServiceIntegrationTest {
 
     @MockitoBean
     SaveOrderPort saveOrderPort;
