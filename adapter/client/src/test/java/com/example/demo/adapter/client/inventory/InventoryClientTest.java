@@ -4,20 +4,20 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerPort;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClient;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@AutoConfigureWebClient
 @AutoConfigureStubRunner(ids = "client:inventory", generateStubs = true)
 class InventoryClientTest {
-
-    @Autowired
-    RestClient.Builder restClientBuilder;
 
     private InventoryClient inventoryClient;
 
@@ -25,7 +25,7 @@ class InventoryClientTest {
     int port;
 
     @BeforeEach
-    void setUp() {
+    void setUp(@Autowired RestClient.Builder restClientBuilder) {
         inventoryClient = new InventoryClient(restClientBuilder, "http://localhost:" + port);
     }
 
