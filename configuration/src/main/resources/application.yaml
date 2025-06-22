@@ -2,6 +2,7 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+# for web-openapi
 openapi:
   mergedSpec:
     base-path: /openapi
