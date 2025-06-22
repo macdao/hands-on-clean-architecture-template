@@ -6,6 +6,9 @@ import static org.mockito.ArgumentMatchers.assertArg;
 import static org.mockito.Mockito.*;
 
 import com.example.demo.adapter.web.order.GetOrderController;
+import com.example.demo.adapter.web.order.PayOrderController;
+import com.example.demo.adapter.web.order.PlaceOrderController;
+import com.example.demo.adapter.web.security.SecurityConfig;
 import com.example.demo.application.port.in.OrderNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import java.math.BigDecimal;
@@ -13,11 +16,25 @@ import java.time.Instant;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
-public abstract class OrdersBase extends ContractTestBase {
+@WebMvcTest({GetOrderController.class, PayOrderController.class, PlaceOrderController.class})
+@Import(SecurityConfig.class)
+abstract class OrdersBase extends ContractTestBase {
+
+    @MockitoBean
+    PlaceOrderController placeOrderController;
+
+    @MockitoBean
+    GetOrderController getOrderController;
+
+    @MockitoBean
+    PayOrderController payOrderController;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         super.setup();
 
         doThrow(new IllegalStateException()).when(payOrderController).payOrder("order-id-2");

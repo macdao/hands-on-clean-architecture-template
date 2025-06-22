@@ -19,10 +19,10 @@ import org.springframework.web.client.HttpServerErrorException;
 class DeductInventorAdapterTest {
 
     @Mock
-    private InventoryClient inventoryClient;
+    InventoryClient inventoryClient;
 
     @InjectMocks
-    private DeductInventorAdapter deductInventorAdapter;
+    DeductInventorAdapter deductInventorAdapter;
 
     @Test
     void deductInventory_should_call_success() {

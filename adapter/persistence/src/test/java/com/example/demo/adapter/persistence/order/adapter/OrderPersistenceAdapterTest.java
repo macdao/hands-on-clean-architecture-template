@@ -24,10 +24,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class OrderPersistenceAdapterTest {
 
     @Mock
-    private OrderEntityRepository orderEntityRepository;
+    OrderEntityRepository orderEntityRepository;
 
     @InjectMocks
-    private OrderPersistenceAdapter orderPersistenceAdapter;
+    OrderPersistenceAdapter orderPersistenceAdapter;
 
     @Test
     void save_should_success() {

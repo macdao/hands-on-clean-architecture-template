@@ -30,7 +30,7 @@ class PlaceOrderApplicationTest {
     MockMvc mvc;
 
     @Autowired
-    private OrderEntityRepository orderEntityRepository;
+    OrderEntityRepository orderEntityRepository;
 
     @AfterEach
     void tearDown() {

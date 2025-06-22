@@ -4,22 +4,21 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
+import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureMockRestServiceServer;
+import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerPort;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClient;
 
-@ExtendWith(SpringExtension.class)
-@AutoConfigureWebClient
+@RestClientTest
+@AutoConfigureMockRestServiceServer(enabled = false)
 @AutoConfigureStubRunner(ids = "client:inventory", generateStubs = true)
 class InventoryClientTest {
 
-    private InventoryClient inventoryClient;
+    InventoryClient inventoryClient;
 
     @StubRunnerPort("inventory")
     int port;
