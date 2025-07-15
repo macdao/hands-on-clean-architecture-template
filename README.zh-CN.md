@@ -2,55 +2,55 @@
 
 [![Java CI with Gradle](https://github.com/macdao/hands-on-clean-architecture-template/actions/workflows/gradle.yml/badge.svg)](https://github.com/macdao/hands-on-clean-architecture-template/actions/workflows/gradle.yml)
 
-[中文](README.zh-CN.md)
+[English](README.md)
 
-HoCAT (Hands-on Clean Architecture Template) is a production-ready clean architecture template that serves as a foundational codebase template for your projects.
+HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板。旨在成为项目的代码库模板选项之一。
 
-A best-practice implementation of Clean Architecture / Hexagonal Architecture / Ports and Adapters Architecture with practical code templates. Built with the latest technologies, tools, recommended configurations, and best practices.
+最佳实践的整洁架构/六边形架构/端口适配器架构，可落地的代码模板。使用了当前最新的技术和工具、推荐的使用/配置方式和最佳实践。
 
-## Project Overview
+## 项目说明
 
-This document describes how to use this project. For more information about HoCAT, please refer to the [HoCAT documentation](.hocat).
+本文档介绍本项目的使用方式。 更多关于HoCAT的信息，请查看[HoCAT文档](.hocat)。
 
-## Getting Started
+## 项目使用
 
-- Prerequisites
-  - Install Java 21
-  - Install Docker and Docker Compose
+- 前置条件
+  - 安装Java 21。
+  - 安装Docker和Docker Compose。
 
-- Build and Test
+- 测试构建
 
-  Use `./gradlew build` to build the project.
+  使用`./gradlew build`构建项目。
 
-- Local Development
+- 本地运行
 
-  Use `./gradlew bootRun` to run the application locally.
+  使用`./gradlew bootRun`运行本地环境。
 
-  If you need to start local third-party services, run `scripts/run-stub-runner-server configuration/src/test/resources/contracts/client 16581`
+  如果需要启动本地三方服务，运行`scripts/run-stub-runner-server configuration/src/test/resources/contracts/client 16581`
 
-- Package
+- 打包
 
-  Use `./gradlew bootBuildImage` to build Docker image. This is based on Spring Boot's Gradle plugin.
+  使用`./gradlew bootBuildImage`构建Docker镜像。这基于Spring Boot的Gradle插件。
 
-### Database
+### 数据库
 
-To avoid port conflicts, dynamic ports are used. You need to check the database port through Docker Compose.
+为避免端口冲突，采用动态端口，需要通过Docker Compose查看数据库端口。
 
-- Check automated test database
+- 查看自动化测试数据库
 
-  Run `docker compose ps` in the `adapter/persistence` directory and check the `PORTS` column.
+  在`adapter/persistence`目录下执行`docker compose ps`，查看`PORTS`。
 
-- Check local runtime database
+- 查看本地运行数据库
 
-  Run `docker compose ps` in the `configuration` directory and check the `PORTS` column.
+  在`configuration`目录下执行`docker compose ps`，查看`PORTS`。
 
-### IDE Setup
+### IDE使用
 
-- Formatter: Install the [Spotless](https://github.com/diffplug/spotless) IDE plugin.
+- Formatter：安装IDE插件[Spotless](https://github.com/diffplug/spotless)。
 
-## Technology Stack
+## 技术栈
 
-- Foundation
+- 基础
   - Java (21 LTS)
   - Spring Boot (3.5)
   - Spring Bean Validation
@@ -59,7 +59,7 @@ To avoid port conflicts, dynamic ports are used. You need to check the database 
   - AssertJ
   - Mockito
   - Docker & Docker Compose
-- Build
+- 构建
   - Gradle
   - JaCoCo
   - Spotless
@@ -76,14 +76,14 @@ To avoid port conflicts, dynamic ports are used. You need to check the database 
 - Client
   - Spring RestClient
   - Spring Cloud Contract Stub Runner
-- Documentation
+- 文档
   - Markdown
   - PlantUML
 
-## Architecture
+## 架构
 
 [![HoCAT Diagram](https://www.plantuml.com/plantuml/svg/ZPHHRjim38RVTGeUOCa10iDeQwpRmpeKAOO-1CMWs6mYL1OrYjuMjBtx4XcUR4S8-XJWvqVgvo_5Lq4qIzTQ5LwCyvfr2mq-wyxABJdvhbk4MyCQAchm4zoHe-1rZSs8NsCjskqitX0to0zoi5WKDzIvHlEXBA7HOO_v3bs_xFX4LcI99rsFUoEOQpePEp_44RVQVk0G-CBwCE8gQZqvT3BdlfdTNcRmL_ohT-G-WAQv__t2bcoZzgP1c5WFWema1uzAyU0Q1c3AlYg0VMy2jFVMr5eCkQW3U6A17m4h7V2UM99uZnnC47Jrh51PWqwcsXrnefAZwtJU0_9lKsC4HkT1yRPOPBWLb16TkO0YIqSq-Rf4HQSNcNS5aw0MYn8s3RNQk2TrhDN3DO5kj1VarH_SmkjizOgSC5cBF2iyulRd6dzr6EJu6povq3jB7R0eizZvfElUmRm_XfhAGvYvcL1Cq7x_aH3N7rrOFW6VhkaiYJLw2aQ83xF2PoT6UZ4nfzrJ8T7Zbv2yZZlZ9dcgdvWbqiwZGjhzhPm_mHKK-Gpg-FxE7qAKisB-WllQCOUBr7pMUDjUYTjcYlcX6Jh6ahIKI2-DmjWC6IoNowSZKwOFmhjIQbEJUpQxZkCVgWU6BvHIL-YQhhN_0000)](https://www.plantuml.com/plantuml/uml/ZPHHRjim38RVVGeUOCa10iDeQwpRmpeKAOO-1CMWM6mYL1OrYjuMjBtx4XcUR4S8-XI0_qVgvo_5Lq4KIzVQ8hmOvnMh5ZG-gyxABJdvhbg4MyCAQjBu2Ux8KV2gGJtYrzY8SZkBDyGQ-K4E5iloXZgd5H-g2hGAUyntgEPbnoUo9aiywNhS6y5SqydO-I6Ek5Ns0uV05rQ74LTJwycXapdtpUpsCeE_ub-r8_S1DCtzxnUsP7MnDnfXOZq8Cf8SF1O53wvX0ARiQm6mxqs0yjwQHeaX5-i0dbZWHy1Q1RmdbbIyHmuc2Bfc9jJMe9DfxOuuKSdHTJhl0VctQJ02e_EWV5iiCjmAgeZEN42PfIEQV5sYejEBp7i1aw0MYmescbfbt5Dnr9hXca1fvGLvzGUty3fRlIOdJDOYpuH7tFvSuwyEWnn_WoSNUcUf0nPL7ZkRTDqxcFV7K9CyX9cR2UK4xVSV5UBwemlB9-3JDPqbiKPFmGZnOIPyTcAaBoRcj7iI4Zr-2Sdhk3DkagVwYJaYxJmMqkvlrVm9hg3CPz34ztV-468vMynVSAyTSxX8pMUDj-qhSTkyc1cQeMCigPOIwKkZC3P31ilbykd8LEc3y5uKcuRSizbr7FzFlJvye8hY2ftkMliF)
 
-## Lightweight Version
+## 轻量级版本
 
-[HoCATLing](https://github.com/macdao/hands-on-clean-architecture-template-ling) - A simplified version without separate components, suitable for small projects.
+[HoCATLing](https://github.com/macdao/hands-on-clean-architecture-template-ling)，不拆分多个独立的组件，适用于小型项目。
