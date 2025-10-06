@@ -16,6 +16,9 @@ The core value of HoCAT lies in its clear, decoupled architecture. It is not jus
 
 For a detailed guide on the architecture design, please refer to the [Clean Architecture Implementation Guide (in Chinese)](https://zhuanlan.zhihu.com/c_1839245367729864704).
 
+### Design and Implementation Notes
+For a deeper dive into the engineering decisions, implementation details, and the reasoning behind our technology and tooling choices (such as Gradle conventions and testing strategies), please refer to the HoCAT project's internal documentation: **[.hocat/README.md](.hocat/README.md)**.
+
 ### Core Design Philosophy
 
 #### 1. From Abstract Theory to Engineering Practice
