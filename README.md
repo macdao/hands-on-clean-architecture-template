@@ -14,8 +14,6 @@ The core value of HoCAT lies in its clear, decoupled architecture. It is not jus
 
 [![HoCAT Diagram](https://www.plantuml.com/plantuml/svg/ZPHHRjim38RVTGeUOCa10iDeQwpRmpeKAOO-1CMWs6mYL1OrYjuMjBtx4XcUR4S8-XJWvqVgvo_5Lq4qIzTQ5LwCyvfr2mq-wyxABJdvhbk4MyCQAchm4zoHe-1rZSs8NsCjskqitX0to0zoi5WKDzIvHlEXBA7HOO_v3bs_xFX4LcI99rsFUoEOQpePEp_44RVQVk0G-CBwCE8gQZqvT3BdlfdTNcRmL_ohT-G-WAQv__t2bcoZzgP1c5WFWema1uzAyU0Q1c3AlYg0VMy2jFVMr5eCkQW3U6A17m4h7V2UM99uZnnC47Jrh51PWqwcsXrnefAZwtJU0_9lKsC4HkT1yRPOPBWLb16TkO0YIqSq-Rf4HQSNcNS5aw0MYn8s3RNQk2TrhDN3DO5kj1VarH_SmkjizOgSC5cBF2iyulRd6dzr6EJu6povq3jB7R0eizZvfElUmRm_XfhAGvYvcL1Cq7x_aH3N7rrOFW6VhkaiYJLw2aQ83xF2PoT6UZ4nfzrJ8T7Zbv2yZZlZ9dcgdvWbqiwZGjhzhPm_mHKK-Gpg-FxE7qAKisB-WllQCOUBr7pMUDjUYTjcYlcX6Jh6ahIKI2-DmjWC6IoNowSZKwOFmhjIQbEJUpQxZkCVgWU6BvHIL-YQhhN_0000)](https://www.plantuml.com/plantuml/uml/ZPHHRjim38RVVGeUOCa10iDeQwpRmpeKAOO-1CMWM6mYL1OrYjuMjBtx4XcUR4S8-XI0_qVgvo_5Lq4KIzVQ8hmOvnMh5ZG-gyxABJdvhbg4MyCAQjBu2Ux8KV2gGJtYrzY8SZkBDyGQ-K4E5iloXZgd5H-g2hGAUyntgEPbnoUo9aiywNhS6y5SqydO-I6Ek5Ns0uV05rQ74LTJwycXapdtpUpsCeE_ub-r8_S1DCtzxnUsP7MnDnfXOZq8Cf8SF1O53wvX0ARiQm6mxqs0yjwQHeaX5-i0dbZWHy1Q1RmdbbIyHmuc2Bfc9jJMe9DfxOuuKSdHTJhl0VctQJ02e_EWV5iiCjmAgeZEN42PfIEQV5sYejEBp7i1aw0MYmescbfbt5Dnr9hXca1fvGLvzGUty3fRlIOdJDOYpuH7tFvSuwyEWnn_WoSNUcUf0nPL7ZkRTDqxcFV7K9CyX9cR2UK4xVSV5UBwemlB9-3JDPqbiKPFmGZnOIPyTcAaBoRcj7iI4Zr-2Sdhk3DkagVwYJaYxJmMqkvlrVm9hg3CPz34ztV-468vMynVSAyTSxX8pMUDj-qhSTkyc1cQeMCigPOIwKkZC3P31ilbykd8LEc3y5uKcuRSizbr7FzFlJvye8hY2ftkMliF)
 
-For a detailed guide on the architecture design, please refer to the [Clean Architecture Implementation Guide (in Chinese)](https://zhuanlan.zhihu.com/c_1839245367729864704).
-
 ### Design and Implementation Notes
 For a deeper dive into the engineering decisions, implementation details, and the reasoning behind our technology and tooling choices (such as Gradle conventions and testing strategies), please refer to the HoCAT project's internal documentation: **[.hocat/README.md](.hocat/README.md)**.
 
@@ -43,14 +41,29 @@ HoCAT's strategy is that **each layer owns the data structures for its boundarie
 #### 4. Deep Decoupling within Adapters
 A well-designed adapter should also follow the separation of concerns principle internally. HoCAT isolates third-party library dependencies to the smallest possible scope within an adapter. For example, in the persistence adapter, only a few components, such as entity classes annotated with `@Entity` (e.g., `OrderEntity`) and repositories that inherit from Spring Data interfaces (e.g., `OrderJpaRepository`), are directly coupled with the specific data access technology (like Spring Data JPA). The rest of the adapter remains agnostic to the specific persistence technology, achieving a deeper level of isolation.
 
+For a detailed guide on the architecture design, please refer to the [Clean Architecture Implementation Guide (in Chinese)](https://zhuanlan.zhihu.com/c_1839245367729864704).
+
 ## Codebase Tour
 
 To understand how the architecture is implemented, here is a tour of the key modules:
 
-- `domain`: Defines the core business entities and rules; the most stable and pure part of the application.
-- `application`: Orchestrates business logic by defining Use Cases and the interfaces (Ports) that the outer layers must implement.
-- `adapter`: Connects the application to the outside world by providing concrete implementations for the ports defined in the `application` layer.
-- `configuration`: The final assembly module. It wires everything together using dependency injection.
+- **Main Code Modules**
+  - `domain`: Defines the core business entities and rules; the most stable and pure part of the application.
+  - `application`: Orchestrates business logic by defining Use Cases and the interfaces (Ports) that the outer layers must implement.
+  - `adapter`: Connects the application to the outside world by providing concrete implementations for the ports defined in the `application` layer.
+    - `adapter/web`: Implements the web interface based on Spring Web MVC, handling HTTP requests.
+    - `adapter/web-openapi`: Implements the web interface based on the OpenAPI specification.
+    - `adapter/persistence`: Implements the data persistence interface based on Spring Data JPA.
+    - `adapter/persistence-jdbc`: Another concrete implementation of `persistence`, using Spring Data JDBC.
+    - `adapter/client`: Implements a client for calling external services.
+  - `configuration`: The final assembly module. It wires everything together using dependency injection.
+- **Build Support Directories**
+  - `buildSrc`: Contains custom Gradle build logic for sub-modules.
+  - `gradle`: Contains the Gradle Wrapper and the project dependency version catalog defined in the `libs.versions.toml` file.
+  - `scripts`: Contains scripts for development and operational support, such as a script to run a stub server for testing.
+- **Other Directories**
+  - `docs`: Contains project-related documentation, such as architecture diagrams, domain models, and architecture decisions.
+  - `.hocat`: Contains the design documents and explanations for the HoCAT project itself, to help understand its architectural decisions.
 
 ## Getting Started
 

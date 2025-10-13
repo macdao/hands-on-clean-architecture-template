@@ -46,12 +46,25 @@ HoCAT 的策略是：**每个适配器都拥有其数据结构**。例如，`web
 
 ## 代码库导览
 
-为了帮助你理解架构是如何在代码中实现的，这里是关键模块的导览：
+介绍目录结构
 
-- `domain`: 定义核心业务实体与规则，是应用中最稳定且纯粹的部分。
-- `application`: 编排业务流程，定义用例（Use Cases）和端口（Ports）。
-- `adapter`: 实现与外部技术（如数据库、Web API）交互的逻辑，是端口的具体实现。
-- `configuration`: 负责应用的组装与配置，使用依赖注入将所有模块连接在一起。
+- 主要代码模块
+  - `domain`: 领域层。
+  - `application`: 应用层，也叫用例（Use Cases）。
+  - `adapter`: 适配器层。
+    - `adapter/web`: 实现了基于 Spring Web MVC 的 Web 接口，处理 HTTP 请求。
+    - `adapter/web-openapi`: 实现了基于 OpenAPI 规范的 Web 接口。
+    - `adapter/persistence`: 实现了基于 Spring Data JPA 的数据持久化接口。
+    - `adapter/persistence-jdbc`: `persistence` 的另一个具体实现，使用了 Spring Data JDBC。
+    - `adapter/client`: 用于调用外部服务的客户端实现。
+  - `configuration`: 配置层。
+- 构建支持目录
+  - `buildSrc`: 存放自定义的 Gradle 构建逻辑，用于子模块的构建。
+  - `gradle`: 包含了 Gradle Wrapper，以及通过 `libs.versions.toml` 文件定义的项目依赖版本目录。
+  - `scripts`: 存放辅助开发和运维的脚本，例如用于运行测试桩（Stub）服务器的脚本。
+- 其他目录
+  - `docs`: 存放项目相关文档，如架构图、领域模型、架构决策等。
+  - `.hocat`: 存放 HoCAT 项目本身的设计文档和说明，帮助理解其架构决策。
 
 ## 快速上手
 
