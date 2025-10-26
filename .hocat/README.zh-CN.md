@@ -33,6 +33,7 @@ HoCAT，Hands-on Clean Architecture Template，即可落地的整洁架构模板
   使用了Gradle[推荐的方式](https://docs.gradle.org/current/userguide/gradle_directories.html)，没有在root project里放置build.gradle.kts。
 
   > Some builds may contain a build.gradle(.kts) file in the root project but this is NOT recommended.
+  > - [Part 1: Initializing the Project](https://docs.gradle.org/current/userguide/part1_gradle_init.html)
 
 - [Do not use cross-project configuration](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html#sec:convention_plugins_vs_cross_configuration)
 

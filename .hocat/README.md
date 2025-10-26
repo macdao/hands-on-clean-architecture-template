@@ -33,6 +33,7 @@ The project was initially created using Spring Initializr. Parameters: `https://
   Uses Gradle's [recommended approach](https://docs.gradle.org/current/userguide/gradle_directories.html), without placing build.gradle.kts in the root project.
 
   > Some builds may contain a build.gradle(.kts) file in the root project but this is NOT recommended.
+  > - [Part 1: Initializing the Project](https://docs.gradle.org/current/userguide/part1_gradle_init.html)
 
 - [Do not use cross-project configuration](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html#sec:convention_plugins_vs_cross_configuration)
 
