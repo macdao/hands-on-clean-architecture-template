@@ -1,0 +1,5 @@
+com/example/demo/application/service/PlaceOrderServiceTest.class
+com/example/demo/application/service/PayOrderServiceIntegrationTest.class
+com/example/demo/application/service/GetOrderServiceTest.class
+com/example/demo/application/service/PlaceOrderServiceIntegrationTest.class
+com/example/demo/application/service/PayOrderServiceTest.class

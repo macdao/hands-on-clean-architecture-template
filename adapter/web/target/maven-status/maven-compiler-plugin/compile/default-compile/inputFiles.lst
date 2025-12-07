@@ -1,0 +1,8 @@
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/WebExceptionHandler.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/order/GetOrderController.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/order/PayOrderController.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/order/PlaceOrderController.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/order/adapter/GetOrderAdapter.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/order/adapter/PayOrderAdapter.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/order/adapter/PlaceOrderAdapter.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/web/src/main/java/com/example/demo/adapter/web/security/SecurityConfig.java

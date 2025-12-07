@@ -1,0 +1,8 @@
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/Identities.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/order/Order.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/order/OrderId.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/order/OrderStatus.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/person/Address.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/person/Person.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/product/ProductId.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/domain/src/main/java/com/example/demo/domain/user/UserId.java

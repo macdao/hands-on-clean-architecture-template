@@ -13,7 +13,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.SimpleTransactionStatus;
@@ -21,13 +21,13 @@ import org.springframework.transaction.support.SimpleTransactionStatus;
 @SpringBootTest(classes = PayOrderService.class)
 @EnableTransactionManagement(proxyTargetClass = true)
 class PayOrderServiceIntegrationTest {
-    @MockitoBean
+    @MockBean
     FindOrderPort findOrderPort;
 
-    @MockitoBean
+    @MockBean
     SaveOrderPort saveOrderPort;
 
-    @MockitoBean
+    @MockBean
     PlatformTransactionManager transactionManager;
 
     @Autowired

@@ -1,0 +1,3 @@
+com/example/demo/adapter/client/inventory/InventoryClient$DeductInventoryRequest.class
+com/example/demo/adapter/client/inventory/adapter/DeductInventorAdapter.class
+com/example/demo/adapter/client/inventory/InventoryClient.class

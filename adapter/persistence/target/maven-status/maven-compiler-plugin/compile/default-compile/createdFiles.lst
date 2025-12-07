@@ -1,0 +1,3 @@
+com/example/demo/adapter/persistence/order/adapter/OrderPersistenceAdapter.class
+com/example/demo/adapter/persistence/order/OrderEntityRepository.class
+com/example/demo/adapter/persistence/order/OrderEntity.class

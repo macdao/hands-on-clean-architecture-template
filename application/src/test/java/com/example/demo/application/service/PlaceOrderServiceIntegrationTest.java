@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.support.TransactionTemplate;
 
 @SpringBootTest(classes = PlaceOrderService.class)
@@ -19,13 +19,13 @@ import org.springframework.transaction.support.TransactionTemplate;
 @EnableAutoConfiguration
 class PlaceOrderServiceIntegrationTest {
 
-    @MockitoBean
+    @MockBean
     SaveOrderPort saveOrderPort;
 
-    @MockitoBean
+    @MockBean
     DeductInventoryPort deductInventoryPort;
 
-    @MockitoBean
+    @MockBean
     TransactionTemplate transactionTemplate;
 
     @Autowired

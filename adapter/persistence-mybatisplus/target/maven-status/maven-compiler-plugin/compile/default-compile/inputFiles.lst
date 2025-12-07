@@ -1,0 +1,11 @@
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/MyBatisPlusConfig.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/OrderEntity.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/OrderMapper.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/OrderRepositoryAdapter.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/OrderService.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/OrderServiceImpl.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/PersonRepositoryAdapter.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/UserEntity.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/UserMapper.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/UserService.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence-mybatisplus/src/main/java/com/example/demo/UserServiceImpl.java

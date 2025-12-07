@@ -1,0 +1,11 @@
+com/example/adapter/persistence/mapper/OrderMapper.class
+com/example/adapter/persistence/config/MyBatisPlusConfig.class
+com/example/adapter/persistence/service/UserService.class
+com/example/adapter/persistence/entity/OrderEntity.class
+com/example/adapter/persistence/service/OrderService.class
+com/example/adapter/persistence/repository/OrderRepositoryAdapter.class
+com/example/adapter/persistence/repository/PersonRepositoryAdapter.class
+com/example/adapter/persistence/mapper/UserMapper.class
+com/example/adapter/persistence/entity/UserEntity.class
+com/example/adapter/persistence/service/impl/OrderServiceImpl.class
+com/example/adapter/persistence/service/impl/UserServiceImpl.class
