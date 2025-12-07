@@ -1,0 +1,3 @@
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence/src/test/java/com/example/demo/adapter/persistence/TestApplication.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence/src/test/java/com/example/demo/adapter/persistence/order/OrderEntityRepositoryTest.java
+/Users/mac/Code/java/hands-on-clean-architecture-template/adapter/persistence/src/test/java/com/example/demo/adapter/persistence/order/adapter/OrderPersistenceAdapterTest.java

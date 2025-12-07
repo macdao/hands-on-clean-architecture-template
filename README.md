@@ -68,19 +68,35 @@ To understand how the architecture is implemented, here is a tour of the key mod
 ## Getting Started
 
 ### Prerequisites
-- Install Java 21
+- Install Java 18 (required for Maven builds)
 - Install Docker and Docker Compose
 
 ### Build and Test
 Use `./gradlew build` to build and test the entire project.
+
+Alternatively, use Maven:
+```bash
+mvn clean compile
+mvn test
+```
 
 ### Local Development
 - Use `./gradlew bootRun` to run the application locally.
 - To start the database, run `docker compose up -d` in the `configuration` directory. You can check the dynamically assigned port with `docker compose ps`.
 - To start local third-party services for contract testing, run `scripts/run-stub-runner-server configuration/src/test/resources/contracts/client 16581`.
 
+Alternatively with Maven:
+```bash
+mvn spring-boot:run
+```
+
 ### Package
 Use `./gradlew bootBuildImage` to build a Docker image.
+
+Alternatively with Maven:
+```bash
+mvn package
+```
 
 ### IDE Setup
 - **Formatter**: Install the [Spotless](https://github.com/diffplug/spotless) IDE plugin to auto-format code.
@@ -88,12 +104,13 @@ Use `./gradlew bootBuildImage` to build a Docker image.
 ## Technology Stack
 
 - **Foundation**: Java 21, Spring Boot 3.5, Spring Bean Validation, Lombok
-- **Build**: Gradle, JaCoCo, Spotless
+- **Build**: Gradle, Maven, JaCoCo, Spotless
 - **Optional Adapters**
   - **Web Adapter**: Spring Web MVC, Spring Security, Spring Cloud Contract
   - **OpenAPI-based Web Adapter**: OpenAPI Generator, Spring Web MVC, Spring Security
   - **Persistence (JPA)**: Spring Data JPA, MySQL 8, Flyway, Spring Boot Docker Compose Support
   - **Persistence (JDBC)**: Spring Data JDBC, MySQL 8, Flyway, Spring Boot Docker Compose Support
+  - **Persistence (MyBatis Plus)**: MyBatis Plus, MySQL 8, Flyway, Spring Boot Docker Compose Support
   - **Client Adapter**: Spring RestClient, Spring Cloud Contract Stub Runner
 - **Testing**: JUnit 5, AssertJ, Mockito
 - **Documentation**: Markdown, PlantUML

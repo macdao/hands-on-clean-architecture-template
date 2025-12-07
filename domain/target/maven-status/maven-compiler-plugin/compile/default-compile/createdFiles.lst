@@ -1,0 +1,10 @@
+com/example/demo/domain/person/Person$PersonStatus.class
+com/example/demo/domain/person/Person.class
+com/example/demo/domain/order/Order.class
+com/example/demo/domain/order/OrderStatus.class
+com/example/demo/domain/order/OrderId.class
+com/example/demo/domain/person/Person$PersonId.class
+com/example/demo/domain/user/UserId.class
+com/example/demo/domain/person/Address.class
+com/example/demo/domain/Identities.class
+com/example/demo/domain/product/ProductId.class

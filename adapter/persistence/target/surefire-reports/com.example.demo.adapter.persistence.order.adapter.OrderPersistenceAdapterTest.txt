@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.demo.adapter.persistence.order.adapter.OrderPersistenceAdapterTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.004 s -- in com.example.demo.adapter.persistence.order.adapter.OrderPersistenceAdapterTest

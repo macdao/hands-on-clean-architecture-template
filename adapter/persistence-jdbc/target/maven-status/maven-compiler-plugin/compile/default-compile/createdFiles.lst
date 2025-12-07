@@ -1,0 +1,4 @@
+com/example/demo/adapter/persistencejdbc/person/PersonRepository.class
+com/example/demo/adapter/persistencejdbc/JdbcConfiguration$PersonIdToStringConverter.class
+com/example/demo/adapter/persistencejdbc/JdbcConfiguration.class
+com/example/demo/adapter/persistencejdbc/JdbcConfiguration$StringToPersonIdConverter.class
